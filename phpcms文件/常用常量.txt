@@ -1,0 +1,14 @@
+CACHE_PATH 缓存文件夹地址 
+SITE_PROTOCOL 主机协议 
+SITE_URL 当前访问的主机名 
+HTTP_REFERER  来源 
+SYS_START_TIME 系统开始时间 
+CHARSET  页面字符集 
+SYS_TIME 当前时间戳 
+WEB_PATH  网站根路径 
+JS_PATH  JS路径 
+CSS_PATH CSS路径 
+IMG_PATH  图片路径 
+APP_PATH  动态程序路径  
+PLUGIN_STATICS_PATH 应用静态文件路径
+
