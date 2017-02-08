@@ -1,0 +1,2827 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>API手册 - 文档 - Clouda</title>
+<meta name="description" content="API手册">
+<link href="http://cloudajs.org/assets/favicon.ico" rel="shortcut icon">
+<link href="API%E6%89%8B%E5%86%8C%20-%20%E6%96%87%E6%A1%A3%20-%20Clouda_files/md.css" rel="stylesheet" type="text/css">
+<link href="API%E6%89%8B%E5%86%8C%20-%20%E6%96%87%E6%A1%A3%20-%20Clouda_files/global.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">var sfileVersion="20140225";</script>
+</head>
+<body id="page-docs">
+<div id="wrapper">
+  <noscript>
+  <div id="noscript-tip">小提示：开启 Javascript 能获得更好的体验！</div>
+  </noscript>
+  <header id="header">
+    <div class="cnt-wrapper">
+      <h1><a id="home-lnk" href="http://cloudajs.org/">Clouda</a></h1>
+      <a class="button fghb-btn" href="https://github.com/brandnewera/sumeru" target="_blank">Fork me on GitHub</a>
+      <div id="topsrh-box">
+  <form id="topsrh-form" method="get" action="/search/docs">
+    <input name="q" id="topsrh-q" placeholder="搜索Clouda文档">
+  </form>
+</div>
+      <nav id="nav">
+        <ul id="nav-list">
+          <li><a class="" href="http://cloudajs.org/lightapp">接入轻应用</a></li>
+          <li><a class="" href="http://cloudajs.org/tutorials">教程</a></li>
+          <li><span id="topsrh-icon"></span><a class="active" href="http://cloudajs.org/docs">文档</a></li>
+          <li><a class="" href="http://cloudajs.org/cases">客户案例</a></li>  
+          <li><a class="" href="http://cloudajs.org/ui">UI</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="clearfix"></div>
+  </header>
+  <div id="content" class="docs-box">
+  <div id="docs-cnt">
+	<article class="md-body">
+  <h1 id="h1_1">API 文档</h1>
+
+<h2 id="h2_1">Router</h2>
+
+<p>用于建立URL(其路径部分)和Controller的对应关系，一个Controller可以对应多个URL，但是一个URL只能对应一个Controller。</p>
+
+<ul>
+<li><h3 id="h3_1">add</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">add</span><span class="pun">({</span><span class="pln">pattren</span><span class="pun">:</span><span class="str">''</span><span class="pun">,</span><span class="pln"> action</span><span class="pun">:</span><span class="str">''</span><span class="pun">})</span></code></pre>
+
+<p>在router中添加一组pattren与Controller的对于关系</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">router</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        pattern</span><span class="pun">:</span><span class="pln"> </span><span class="str">'/studentList'</span><span class="pun">,</span><span class="pln">
+        action</span><span class="pun">:</span><span class="pln"> </span><span class="str">'App.studentList'</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">);</span></code></pre>
+
+<ul>
+<li><p>pattern</p>
+
+<p>URL(其路径部分的值)</p></li>
+<li><p>action</p>
+
+<p>对应Controller的名称</p></li>
+</ul>
+
+<p>如果你想<strong>关闭Server渲染</strong>，可使用下面方法：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">router</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        pattern</span><span class="pun">:</span><span class="pln"> </span><span class="str">'/studentList'</span><span class="pun">,</span><span class="pln">
+        action</span><span class="pun">:</span><span class="pln"> </span><span class="str">'App.studentList'</span><span class="pln">
+        server_render</span><span class="pun">:</span><span class="kwd">false</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">)</span></code></pre>
+
+<ul>
+<li><p>server_render</p>
+
+<p>Server渲染开关，false：关闭，默认为开启</p></li>
+</ul></li>
+<li><h3 id="h3_2">setDefault</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">setDefault</span><span class="pun">(</span><span class="pln">controllerName</span><span class="pun">)</span></code></pre>
+
+<p>设置默认启动Controller</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">router</span><span class="pun">.</span><span class="pln">setDefault</span><span class="pun">(</span><span class="str">'App.studentList'</span><span class="pun">);</span></code></pre></li>
+<li><h3 id="h3_3">externalProcessor.add(processor);</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">router</span><span class="pun">.</span><span class="pln">externalProcessor</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">processor</span><span class="pun">);</span></code></pre>
+
+<p>添加外部处理器</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">添加一个</span><span class="pln">backbone</span><span class="pun">的外部处理器</span><span class="pln">
+
+sumeru</span><span class="pun">.</span><span class="pln">router</span><span class="pun">.</span><span class="pln">externalProcessor</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="typ">Backbone</span><span class="pun">.</span><span class="typ">Router</span><span class="pun">.</span><span class="pln">extend</span><span class="pun">());</span></code></pre></li>
+</ul>
+
+<h2 id="h2_2">Model</h2>
+
+<p>Model用来定义App的数据模型。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln"> </span><span class="typ">Model</span><span class="pun">.</span><span class="pln">student </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">exports</span><span class="pun">){</span><span class="pln">
+    exports</span><span class="pun">.</span><span class="pln">config </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        fields</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+            </span><span class="pun">{</span><span class="pln">name </span><span class="pun">:</span><span class="pln"> </span><span class="str">'studentName'</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'string'</span><span class="pun">},</span><span class="pln">
+            </span><span class="pun">{</span><span class="pln">name </span><span class="pun">:</span><span class="pln"> </span><span class="str">'age'</span><span class="pun">,</span><span class="pln">         type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'number'</span><span class="pun">},</span><span class="pln">
+            </span><span class="pun">{</span><span class="pln">name </span><span class="pun">:</span><span class="pln"> </span><span class="str">'gender'</span><span class="pun">,</span><span class="pln">      type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'string'</span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">]</span><span class="pln">
+    </span><span class="pun">};</span><span class="pln">
+ </span><span class="pun">};</span></code></pre>
+
+<h5 id="h5_1">属性</h5>
+
+<ul>
+<li><h5 id="h5_2">name</h5>
+
+<p>字段的名称</p></li>
+<li><h5 id="h5_3">type</h5>
+
+<p>字段的数据类型，包括一下数据类型：</p></li>
+</ul>
+
+<table style="margin-left: 30px;" cellspacing="0" cellpadding="0" border="0">
+
+    <tbody><tr style="background-color:#3982ff">
+        <th>类型</th>
+        <th>意义</th>
+    </tr>
+
+    <tr>
+        <th>number</th>
+        <th>整形</th>
+    </tr>
+
+    <tr>
+        <th>datetime</th>
+        <th>日期</th>
+    </tr>
+
+    <tr>
+        <th>string</th>
+        <th>字符串数</th>
+    </tr>
+    <tr>
+        <th>object</th>
+        <th>对象</th>
+    </tr>
+    <tr>
+        <th>array</th>
+        <th>数组</th>
+    </tr>
+    <tr>
+        <th>model</th>
+        <th>数据模型</th>
+    </tr>
+    <tr>
+        <th>collection</th>
+        <th>数据集合</th>
+    </tr>
+
+</tbody></table>
+
+<ul>
+<li><h3 id="h3_4">relation</h3>
+
+<p>使用relation时type属性值必须为“model”。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'class'</span><span class="pun">,</span><span class="pln">  type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'model'</span><span class="pun">,</span><span class="pln"> relation</span><span class="pun">:</span><span class="pln"> </span><span class="str">'one'</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> model</span><span class="pun">:</span><span class="str">'Model.class'</span><span class="pun">},</span></code></pre>
+
+<ul>
+<li><p>one</p>
+
+<p>引用一个Model</p></li>
+<li><p>many</p>
+
+<p>引入一个Collection</p></li>
+</ul></li>
+<li><h3 id="h3_5">defaultValue</h3>
+
+<p>字段的默认值</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'gender'</span><span class="pun">,</span><span class="pln">  type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'string'</span><span class="pun">,</span><span class="pln"> defaultValue</span><span class="pun">:</span><span class="str">'male'</span><span class="pun">},</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'number'</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'number'</span><span class="pun">,</span><span class="pln"> defaultValue</span><span class="pun">:</span><span class="lit">1</span><span class="pun">},</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'array'</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'array'</span><span class="pun">,</span><span class="pln"> defaultValue</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"Fight Club"</span><span class="pun">,</span><span class="str">"health club"</span><span class="pun">]},</span><span class="pln">
+</span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'object'</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'object'</span><span class="pun">,</span><span class="pln"> defaultValue</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">a</span><span class="pun">:</span><span class="lit">1</span><span class="pun">,</span><span class="pln">b</span><span class="pun">:</span><span class="lit">2</span><span class="pun">}},</span></code></pre></li>
+<li><h3 id="h3_6">validation</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'name'</span><span class="pun">,</span><span class="pln">  type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'string'</span><span class="pun">,</span><span class="pln"> validation</span><span class="pun">:</span><span class="str">'length[1,20]'</span><span class="pun">},</span></code></pre>
+
+<p>字段的验证，validation包括以下方法：</p></li>
+</ul>
+
+<table style="margin-left: 30px;" cellspacing="0" cellpadding="0" border="0">
+
+    <tbody><tr style="background-color:#3982ff">
+        <th>方法</th>
+        <th>意义</th>
+    </tr>
+
+    <tr>
+        <th>length[min,max] </th>
+        <th> 字段值的长度在min-max的范围。</th>
+    </tr>
+
+    <tr>
+        <th>minlength(min)</th>
+        <th>字段值不小于min</th>
+    </tr>
+
+    <tr>
+        <th>maxlength(min)</th>
+        <th>字段值不大于min</th>
+    </tr>
+    <tr>
+        <th>required</th>
+        <th>字段值不能为空</th>
+    </tr>
+    <tr>
+        <th>unique</th>
+        <th>字段值必须唯一</th>
+    </tr>
+    <tr>
+        <th>telephone</th>
+        <th>字段值必须为电话号码格式</th>
+    </tr>
+    <tr>
+        <th>mobilephone</th>
+        <th>字段值必须为手机号码格式,长度为11位且必须为数字</th>
+    </tr>
+    <tr>
+        <th>email</th>
+        <th> 字段值必须为email格式</th>
+    </tr>
+
+    <tr>
+        <th>onlyletter</th>
+        <th>字段值必须是字母</th>
+    </tr>
+
+    <tr>
+        <th>nospecialchars</th>
+        <th>字段值不能包含特殊字符</th>
+    </tr>
+    <tr>
+        <th>date</th>
+        <th>字段值必须是日期格式</th>
+    </tr>
+    <tr>
+        <th>url</th>
+        <th>字段值必须是URL</th>
+    </tr>
+
+    <tr>
+        <th>chinese</th>
+        <th>字段值必须是中文</th>
+    </tr>
+
+
+</tbody></table>
+
+<p>注：多个验证条件之间使用" | "连接</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">    </span><span class="pun">{</span><span class="pln">name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'name'</span><span class="pun">,</span><span class="pln">  type</span><span class="pun">:</span><span class="pln"> </span><span class="str">'string'</span><span class="pun">,</span><span class="pln"> validation</span><span class="pun">:</span><span class="str">'length[1,20]|required'</span><span class="pun">},</span></code></pre>
+
+<ul>
+<li><h3 id="h3_7">addRule</h3>
+
+<p>除了上面的验证方法外，还可以自定义验证方法。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">validation</span><span class="pun">.</span><span class="pln">addRule</span><span class="pun">(</span><span class="pln">ruleName</span><span class="pun">,{</span><span class="pln">
+                                </span><span class="str">"runat"</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">"client"</span><span class="pun">,</span><span class="pln">
+
+                                </span><span class="pun">验证方法</span><span class="pln">  </span><span class="pun">,</span><span class="pln">
+
+                                </span><span class="str">"msg"</span><span class="pln">   </span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln">
+                               </span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><p>ruleName</p>
+
+<p>验证方法的名称，如"chinese"、"url"</p></li>
+<li><p>runat</p>
+
+<p>定义在哪个端上（client/server）进行验证</p>
+
+<ul>
+<li><p>client</p>
+
+<p>在客户端上进行验证</p></li>
+<li><p>server</p>
+
+<p>在服务器端进行验证</p></li>
+<li><p>both</p>
+
+<p>两段都需要验证</p></li>
+</ul></li>
+<li><p>验证方法：该API中框架提供三种自定义验证方法（<strong>三种方法（regxp/func/asyncFunc）每次只能使用一种</strong>）</p>
+
+<ul>
+<li><p>regxp</p>
+
+<p>使用自定义正则表达式对字段进行验证</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">  sumeru</span><span class="pun">.</span><span class="pln">validation</span><span class="pun">.</span><span class="pln">addRule</span><span class="pun">(</span><span class="pln">ruleName</span><span class="pun">,{</span><span class="pln">
+                                        </span><span class="str">"runat"</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">"client"</span><span class="pun">,</span><span class="pln">
+
+                                        </span><span class="str">"regxp"</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">"()"</span><span class="pun">,</span><span class="pln">
+
+                                        </span><span class="str">"msg"</span><span class="pln">   </span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln">
+                                </span><span class="pun">});</span></code></pre></li>
+<li><p>func</p>
+
+<p>使用自定义函数对字段进行验证</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">  sumeru</span><span class="pun">.</span><span class="pln">validation</span><span class="pun">.</span><span class="pln">addRule</span><span class="pun">(</span><span class="pln">ruleName</span><span class="pun">,{</span><span class="pln">
+                                         </span><span class="str">"runat"</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">"client"</span><span class="pun">,</span><span class="pln">
+
+                                         </span><span class="str">"func"</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){},</span><span class="pln">
+
+                                         </span><span class="str">"msg"</span><span class="pln">   </span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln">
+                                </span><span class="pun">});</span></code></pre></li>
+<li><p>asyncFunc</p>
+
+<p>该验证函数在服务器端运行，先获取指定modelObj的数据，然后根据asyncFunc中的方法进行验证，在callback中给出验证的结果。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">  sumeru</span><span class="pun">.</span><span class="pln">validation</span><span class="pun">.</span><span class="pln">addRule</span><span class="pun">(</span><span class="pln">ruleName</span><span class="pun">,{</span><span class="pln">
+                                        </span><span class="str">"runat"</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">"client"</span><span class="pun">,</span><span class="pln">
+
+                                        </span><span class="str">"asyncFunc"</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">,</span><span class="pln">k</span><span class="pun">,</span><span class="pln">v</span><span class="pun">,</span><span class="pln">modelObj</span><span class="pun">){}</span><span class="pln">
+
+                                        </span><span class="str">"msg"</span><span class="pln">   </span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pun">,</span><span class="pln">
+                                </span><span class="pun">});</span></code></pre></li>
+</ul></li>
+<li><p>msg</p>
+
+<p>验证失败后返回的信息</p></li>
+</ul></li>
+<li><h3 id="h3_8">create</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">create</span><span class="pun">(</span><span class="pln">modelName</span><span class="pun">)</span></code></pre>
+
+<p>创建一个model</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> newStudent </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">model</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="str">'Model.student'</span><span class="pun">)</span></code></pre></li>
+<li><h3 id="h3_9">setter</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="pln">studentName </span><span class="pun">=</span><span class="pln"> </span><span class="str">'John'</span><span class="pun">;</span><span class="pln">        </span></code></pre></li>
+<li><h3 id="h3_10">set</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">key</span><span class="pun">,</span><span class="pln">value</span><span class="pun">)</span></code></pre>
+
+<p>设置Model中相应字段的值</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'studentName'</span><span class="pun">,</span><span class="str">'John'</span><span class="pun">);</span></code></pre></li>
+<li><h3 id="h3_11">setData</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">setData</span><span class="pun">(</span><span class="pln">dataMap</span><span class="pun">)</span></code></pre>
+
+<p>使用dataMap对Model赋值</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">({</span><span class="str">'studnetName'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">'Smith'</span><span class="pun">,</span><span class="pln">
+                            </span><span class="str">'age'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">19</span><span class="pun">,</span><span class="pln">
+                         </span><span class="str">'gender'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">'male'</span><span class="pln">
+                  </span><span class="pun">});</span></code></pre></li>
+<li><h3 id="h3_12">getter</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> name </span><span class="pun">=</span><span class="pln"> newStudent</span><span class="pun">.</span><span class="pln">studentName</span><span class="pun">;</span></code></pre></li>
+<li><h3 id="h3_13">get</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">key</span><span class="pun">)</span></code></pre>
+
+<p>获取某一字段的值</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'studentName'</span><span class="pun">);</span></code></pre></li>
+<li><h3 id="h3_14">getId</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">getId</span><span class="pun">()</span></code></pre>
+
+<p>获取model的唯一Id</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="pln">getId</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_15">getData</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">getData</span><span class="pun">()</span></code></pre>
+
+<p>返回一个JSON数据对象</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="pln">getData</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_16">destroy</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">destroy</span><span class="pun">()</span></code></pre>
+
+<p>删除model</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="pln">destroy</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_17">onValidation</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">onValidation</span><span class="pun">(</span><span class="pln">ispass</span><span class="pun">,</span><span class="pln"> runat</span><span class="pun">,</span><span class="pln"> validationResult</span><span class="pun">)</span></code></pre>
+
+<p>对Model验证结果的监听方法</p>
+
+<ul>
+<li><p>ispass</p>
+
+<p>验证是否通过的标志</p>
+
+<ul>
+<li><p>true</p>
+
+<p>验证通过</p></li>
+<li><p>false</p>
+
+<p>验证不通过</p></li>
+</ul></li>
+<li><p>runat</p>
+
+<p>返回进行验证的端（客户端或者服务器端）</p>
+
+<ul>
+<li><p>client</p>
+
+<p>表示在客户端进行验证</p></li>
+<li><p>server</p>
+
+<p>表示在服务器端进行验证</p></li>
+</ul></li>
+<li><p>validationResult</p>
+
+<p>验证返回信息</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">newStudent</span><span class="pun">.</span><span class="pln">onValidation </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">ispass</span><span class="pun">,</span><span class="pln"> runat</span><span class="pun">,</span><span class="pln"> validationResult</span><span class="pun">){</span><span class="pln">
+
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">ispass</span><span class="pun">){</span><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Validation success ！"</span><span class="pun">);}</span><span class="pln">
+
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">((</span><span class="pln">runat</span><span class="pun">==</span><span class="str">'client'</span><span class="pun">?</span><span class="str">'Client'</span><span class="pun">:</span><span class="str">'Server'</span><span class="pun">)+(</span><span class="pln">ispass</span><span class="pun">==</span><span class="kwd">true</span><span class="pun">?</span><span class="str">'Validation Success!'</span><span class="pun">:</span><span class="str">'Validation failed!'</span><span class="pun">));</span><span class="pln">
+
+    </span><span class="kwd">for</span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> validationResult</span><span class="pun">.</span><span class="pln">length</span><span class="pun">-</span><span class="lit">1</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">&gt;=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">--){</span><span class="pln">
+        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">runat</span><span class="pun">==</span><span class="str">'client'</span><span class="pun">?</span><span class="str">'Client'</span><span class="pun">:</span><span class="str">'Server'</span><span class="pun">)+</span><span class="str">'result is：'</span><span class="pun">+</span><span class="pln">validationResult</span><span class="pun">[</span><span class="pln">i</span><span class="pun">].</span><span class="pln">msg</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">};</span></code></pre>
+
+<p>详细代码和说明请参考《Examples》文档。</p></li>
+</ul></li>
+</ul>
+
+<h2 id="h2_3">Collection</h2>
+
+<p>Collection是Model的集合，我们之前曾使用过的subscribe()返回的结果集即是Collection。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection </span><span class="pun">=</span><span class="pln"> env</span><span class="pun">.</span><span class="pln">subscribe</span><span class="pun">(</span><span class="str">"pub-allStudents"</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">myCollection</span><span class="pun">){</span><span class="pln">
+
+</span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><h3 id="h3_18">create</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">create</span><span class="pun">(</span><span class="pln">dataMap</span><span class="pun">)</span></code></pre>
+
+<p>创建一个Collection</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">collection</span><span class="pun">.</span><span class="pln">create</span><span class="pun">({</span><span class="str">'modelName'</span><span class="pun">:</span><span class="str">'Model.student'</span><span class="pun">},</span><span class="pln">
+                         </span><span class="pun">{</span><span class="str">'studnetName'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">'Smith'</span><span class="pun">,</span><span class="pln">
+                                  </span><span class="str">'age'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="lit">19</span><span class="pun">,</span><span class="pln">
+                               </span><span class="str">'gender'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">'male'</span><span class="pln">
+                        </span><span class="pun">});</span></code></pre>
+
+<p>备注：<code>Model.student</code>中的<code>student</code>为Model名称。</p></li>
+<li><h3 id="h3_19">size</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">size</span><span class="pun">()</span></code></pre>
+
+<p>获取collection中包含Model的数量。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">size</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_20">add</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">add</span><span class="pun">(</span><span class="pln">row</span><span class="pun">)</span></code></pre>
+
+<p>在collection中添加一行数据（每行数据实际是一个Model）。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">newStudent</span><span class="pun">);</span></code></pre></li>
+<li><h3 id="h3_21">update</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">update</span><span class="pun">(</span><span class="pln">updateMap</span><span class="pun">,</span><span class="kwd">where</span><span class="pun">)</span></code></pre>
+
+<p>更新collection中满足条件的数据。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">update</span><span class="pun">({</span><span class="str">'name'</span><span class="pun">:</span><span class="str">'Jack'</span><span class="pun">},{</span><span class="str">'name'</span><span class="pun">:</span><span class="str">'John'</span><span class="pun">});</span></code></pre></li>
+<li><h3 id="h3_22">remove</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">remove</span><span class="pun">(</span><span class="kwd">where</span><span class="pun">)</span></code></pre>
+
+<p>将数据从collection中去除，但并不实际删除。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">remove</span><span class="pun">({</span><span class="str">'name'</span><span class="pun">:</span><span class="str">'John'</span><span class="pun">});</span></code></pre>
+
+<p>当没有参数时，去除collection中所有数据。</p></li>
+<li><h3 id="h3_23">destroy</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">destroy</span><span class="pun">(</span><span class="kwd">where</span><span class="pun">)</span></code></pre>
+
+<p>将数据从collection中实际删除。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">destroy</span><span class="pun">({</span><span class="str">'name'</span><span class="pun">:</span><span class="str">'John'</span><span class="pun">});</span></code></pre>
+
+<p>当没有参数时，删除collection中所有数据。</p></li>
+<li><h3 id="h3_24">setData</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">setData</span><span class="pun">(</span><span class="pln">dataMap</span><span class="pun">)</span></code></pre>
+
+<p>使用dataMap对Model赋值</p></li>
+<li><h3 id="h3_25">find</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">find</span><span class="pun">(</span><span class="kwd">where</span><span class="pun">)</span></code></pre>
+
+<p>查询Collection中符合条件的所有数据。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">({</span><span class="str">'name'</span><span class="pun">:</span><span class="str">'John'</span><span class="pun">});</span></code></pre>
+
+<p>当没有参数时，返回所有的数据。</p></li>
+<li><h3 id="h3_26">addSorters</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">addSorters</span><span class="pun">()</span></code></pre>
+
+<p>collection中添加排序方法</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">addSorters</span><span class="pun">(</span><span class="str">'time'</span><span class="pun">,</span><span class="str">'DESC'</span><span class="pun">)</span></code></pre>
+
+<p>collection按照"time"降序排序。</p></li>
+<li><h3 id="h3_27">clearSorters</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">clearSorters</span><span class="pun">()</span></code></pre>
+
+<p>清空collection中排序方法</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">clearSorters</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_28">applyStorters</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">applyStorters</span><span class="pun">()</span></code></pre>
+
+<p>手动执行所有的排序方法</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">applyStorters</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_29">get</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="kwd">get</span><span class="pun">()</span></code></pre>
+
+<p>根据下标取出对应的数据</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="lit">2</span><span class="pun">);</span><span class="pln">   </span></code></pre></li>
+<li><h3 id="h3_30">toJSON</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">toJSON</span><span class="pun">()</span></code></pre>
+
+<p>返回一个JSON对象</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">toJSON</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_31">getData</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">getData</span><span class="pun">()</span></code></pre>
+
+<p>获取包含所有数据的数组</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">getData</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_32">save</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">save</span><span class="pun">()</span></code></pre>
+
+<p>将collection的修改保存到Server。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">save</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_33">pluck</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">pluck</span><span class="pun">(</span><span class="pln">key</span><span class="pun">)</span></code></pre>
+
+<p>返回Collection某一字段所有数据的数组</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">pluck</span><span class="pun">(</span><span class="str">'age'</span><span class="pun">);</span></code></pre></li>
+<li><h3 id="h3_34">hold</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">hold</span><span class="pun">()</span></code></pre>
+
+<p>暂停collection实时更新</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">hold</span><span class="pun">();</span><span class="pln">   </span></code></pre></li>
+<li><h3 id="h3_35">releaseHold</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">releaseHold</span><span class="pun">()</span></code></pre>
+
+<p>恢复对collection的实时更新</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">releaseHold</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_36">where</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="kwd">where</span><span class="pun">()</span></code></pre>
+
+<p>在collection中指定查询条件，需要与find、update、remove、destroy连用。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="kwd">where</span><span class="pun">({</span><span class="str">'gender'</span><span class="pun">:</span><span class="str">'male'</span><span class="pun">});</span><span class="pln">
+
+session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">();</span></code></pre>
+
+<p>返回collection中‘gender’值为‘male’数据的数组。</p></li>
+<li><h3 id="h3_37">orWhere</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">orWhere</span><span class="pun">()</span></code></pre>
+
+<p>在collection中添加一个“or”条件，需要与find、update、remove、destroy连用。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">orWhere</span><span class="pun">({</span><span class="str">'gender'</span><span class="pun">:</span><span class="str">'male'</span><span class="pun">});</span><span class="pln">
+
+session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">();</span></code></pre></li>
+<li><h3 id="h3_38">clearWheres</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">clearWheres</span><span class="pun">()</span></code></pre>
+
+<p>清空collection中所有查询条件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">studentCollection</span><span class="pun">.</span><span class="pln">clearWheres</span><span class="pun">()</span></code></pre></li>
+</ul>
+
+<h2 id="h2_4">View</h2>
+
+<p>View使用handlebars组件作为模板引擎，handlebars语法请参考官网。</p>
+
+<p>为了更快的开发视图代码，Clouda对handlebars的语法做了一些扩展：</p>
+
+<ul>
+<li><h3 id="h3_39">view中引入view</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln"> </span><span class="pun">{{&gt;</span><span class="pln"> viewName</span><span class="pun">}}</span></code></pre>
+
+<p>在一个View中引用另一个View。</p></li>
+<li><h3 id="h3_40">view中使用JS</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln"> </span><span class="pun">{{</span><span class="pln">$ alert</span><span class="pun">(</span><span class="str">"data.length"</span><span class="pun">);</span><span class="pln"> </span><span class="pun">}}</span></code></pre>
+
+<p>在View中直接执行Javascript代码，并将返回结果输出在View中。</p></li>
+<li><h3 id="h3_41">foreach</h3>
+
+<p>用于快速遍历一个对象或数组</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：{{#</span><span class="kwd">foreach</span><span class="pun">}}{{/</span><span class="kwd">foreach</span><span class="pun">}}</span></code></pre>
+
+<p>用法示例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">  </span><span class="tag">&lt;p</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"test-foreach-caseB"</span><span class="tag">&gt;</span><span class="pln">
+      {{#foreach customObj}}
+          {{key}} : {{value}}
+      {{/foreach}}
+  </span><span class="tag">&lt;/p&gt;</span></code></pre></li>
+<li><h3 id="h3_42">compare</h3>
+
+<p>比较两个对象</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">
+    </span><span class="pun">{{#</span><span class="pln">compare a </span><span class="kwd">operator</span><span class="pln"> b</span><span class="pun">}}</span><span class="pln">
+    </span><span class="pun">{{</span><span class="kwd">else</span><span class="pun">}}</span><span class="pln">
+    </span><span class="pun">{{/</span><span class="pln">compare</span><span class="pun">}}</span></code></pre>
+
+<p>可以使用的operator：</p>
+
+<table style="margin-left: 30px;" cellspacing="0" cellpadding="0" border="0">
+
+<tbody><tr style="background-color:#3982ff">
+    <th> operator </th>
+</tr>
+
+<tr>
+    <th> == </th>
+</tr>
+
+<tr>
+    <th> ===</th>
+</tr>
+
+<tr>
+    <th> != </th>
+</tr>
+<tr>
+    <th> !== </th>
+</tr>
+<tr>
+    <th> &lt; </th>
+</tr>
+<tr>
+    <th> &lt;= </th>
+</tr>
+<tr>
+    <th> &gt; </th>
+</tr>
+<tr>
+    <th>  &gt;= </th>
+</tr>
+<tr>
+    <th> typeof </th>
+</tr>
+
+</tbody></table>
+
+<p>用法示例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">{{#</span><span class="pln">compare a </span><span class="str">"&lt;"</span><span class="pln"> b</span><span class="pun">}}</span><span class="pln">
+    a </span><span class="pun">&lt;</span><span class="pln"> b
+</span><span class="pun">{{</span><span class="kwd">else</span><span class="pun">}}</span><span class="pln">
+    a </span><span class="pun">&gt;=</span><span class="pln"> b
+</span><span class="pun">{{/</span><span class="pln">compare</span><span class="pun">}}</span><span class="pln">
+
+</span><span class="pun">{{#</span><span class="pln">compare a </span><span class="str">"typeof"</span><span class="pln"> </span><span class="str">"undefined"</span><span class="pun">}}</span><span class="pln">
+    </span><span class="kwd">undefined</span><span class="pln">
+</span><span class="pun">{{/</span><span class="pln">compare</span><span class="pun">}}</span></code></pre>
+
+<p><strong>注意</strong>：当省略operator时，系统默认使用操作符 ==：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">{{#</span><span class="pln">compare </span><span class="lit">1</span><span class="pln"> </span><span class="lit">1</span><span class="pun">}}</span><span class="pln">
+    </span><span class="lit">1</span><span class="pln"> </span><span class="pun">==</span><span class="pln"> </span><span class="lit">1</span><span class="pln">
+</span><span class="pun">{{/</span><span class="pln">compare</span><span class="pun">}}</span></code></pre></li>
+<li><h3 id="h3_43">sumeru.config.view.set</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">config</span><span class="pun">.</span><span class="pln">view</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'path'</span><span class="pun">,</span><span class="pln"> viewpath</span><span class="pun">);</span></code></pre>
+
+<p>一般情况下将编写的view文件存放在app/view文件夹下，如果编写的view文件不在View文件夹下，我们也提供View文件路径配置的方法，框架会在配置路径下寻找需要的View文件:</p>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">config</span><span class="pun">.</span><span class="pln">view</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'path'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'path/to/'</span><span class="pun">);</span></code></pre>
+
+<p>则Clouda会在如下目录中加载视图：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">app</span><span class="pun">目录/</span><span class="pln">path</span><span class="pun">/</span><span class="pln">to</span><span class="pun">/</span><span class="pln">view</span><span class="pun">/</span></code></pre>
+
+<p>注意:即使是修改viewpath的情况下，<strong>在最内一侧仍然需要有一层view文件夹</strong>，如上面路径的最后部分。</p></li>
+</ul>
+
+<h2 id="h2_5">Transition</h2>
+
+<p>当场景发生转换时，通过transition定义场景转换效果。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln"> doRender</span><span class="pun">(</span><span class="pln">viewName</span><span class="pun">,</span><span class="pln">transition</span><span class="pun">)</span></code></pre>
+
+<ul>
+<li><p>viewName</p>
+
+<p>需要渲染View的名称</p></li>
+<li><p>transition</p>
+
+<ul>
+<li><h3 id="h3_44">push</h3>
+
+<p>推出</p>
+
+<ul>
+<li><p>方向</p>
+
+<ul>
+<li><p>left</p>
+
+<p>从左向右推出</p></li>
+<li><p>right</p>
+
+<p>从右向左推出</p></li>
+<li><p>up</p>
+
+<p>从上向下推出</p></li>
+<li><p>down</p>
+
+<p>从下向上推出</p></li>
+</ul></li>
+</ul></li>
+<li><h3 id="h3_45">rotate</h3>
+
+<p>旋转</p>
+
+<ul>
+<li><p>方向</p>
+
+<ul>
+<li><p>left</p></li>
+<li><p>right</p></li>
+</ul></li>
+</ul></li>
+<li><h3 id="h3_46">fade</h3>
+
+<p>渐变</p>
+
+<ul>
+<li><p>方向</p>
+
+<ul>
+<li><p>z-index</p>
+
+<p>垂直方向</p></li>
+</ul></li>
+</ul></li>
+<li><h3 id="h3_47">shake</h3>
+
+<p>退出场景时先缩小后放大退出，进入场景从左或者右边推入</p>
+
+<ul>
+<li><p>方向</p>
+
+<ul>
+<li><p>left</p>
+
+<p>从左推入进场</p></li>
+<li><p>right</p>
+
+<p>从右推入进场</p></li>
+</ul></li>
+</ul></li>
+<li><h3 id="h3_48">none</h3>
+
+<p>没有转场效果</p>
+
+<ul>
+<li><p>方向参数</p>
+
+<ul>
+<li><p>z</p>
+
+<p>默认参数</p></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">onrender </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">doRender</span><span class="pun">){</span><span class="pln">
+    doRender</span><span class="pun">(</span><span class="str">'student'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">'push'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'down'</span><span class="pun">]);</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+env</span><span class="pun">.</span><span class="pln">onrender </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">doRender</span><span class="pun">){</span><span class="pln">
+    doRender</span><span class="pun">(</span><span class="str">'student'</span><span class="pun">,</span><span class="pln"> </span><span class="pun">[</span><span class="str">'none'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'z'</span><span class="pun">]);</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+</ul>
+
+<h2 id="h2_6">Controller</h2>
+
+<p>如果你曾经接触过MVC模型，那么将会很熟悉Controller的概念。在Clouda中，Controller是每个场景的控制器，负责实现App的核心业务逻辑。</p>
+
+<ul>
+<li><h3 id="h3_49">create</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">env</span><span class="pun">,</span><span class="pln">session</span><span class="pun">){});</span></code></pre>
+
+<p>创建一个Controller</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="typ">App</span><span class="pun">.</span><span class="pln">studentList </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">env</span><span class="pun">,</span><span class="pln">session</span><span class="pun">){});</span></code></pre></li>
+<li><h3 id="h3_50">env</h3>
+
+<ul>
+<li><h4 id="h4_1">redirect</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln"> </span><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">redirect</span><span class="pun">(</span><span class="pln">queryPath</span><span class="pun">,</span><span class="pln">paramMap</span><span class="pun">,</span><span class="pln">isforce</span><span class="pun">)</span></code></pre>
+
+<p>一个Controller跳转到另一个Controller</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">    env</span><span class="pun">.</span><span class="pln">redirect</span><span class="pun">(</span><span class="str">'/studentList'</span><span class="pun">,{</span><span class="str">'class'</span><span class="pun">:</span><span class="str">'101'</span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><p>queryPath</p>
+
+<p>router中pattern的值</p></li>
+<li><p>paramMap</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">需要向跳转</span><span class="typ">Controller</span><span class="pun">传递的参数</span></code></pre></li>
+<li><p>isforce</p>
+
+<p>是否强制生成一个全新的Controller实例。</p></li>
+</ul>
+
+<p>如果在redirect中使用paramMap，可以在跳转目标Controller的create()中"param"接受参数。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="typ">App</span><span class="pun">.</span><span class="pln">studentList </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">controller</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">evn</span><span class="pun">,</span><span class="pln">session</span><span class="pun">,</span><span class="pln">param</span><span class="pun">){</span><span class="pln">
+
+
+</span><span class="pun">});</span></code></pre></li>
+<li><h4 id="h4_2">refresh</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln"> env</span><span class="pun">.</span><span class="pln">refresh</span><span class="pun">()</span></code></pre>
+
+<p>重新加载当前Controller</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">refresh</span><span class="pun">();</span></code></pre></li>
+<li><h4 id="h4_3">onload</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">load</span><span class="pun">()</span></code></pre>
+
+<p>onload()是Controller的第一个时态，Controller中需要使用的数据都在这个时态中加载。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">onload </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="pun">];</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+<li><h4 id="h4_4">onrender</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">onrender</span><span class="pun">()</span></code></pre>
+
+<p>当数据获取完成后，这些数据需要显示在视图(View)上，这个过程通过onrender()中的代码来实现，这是Controller的第二个时态，负责完成对视图(View)的渲染和指定转场方式。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">onrender </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">doRender</span><span class="pun">){</span><span class="pln">
+    doRender</span><span class="pun">(</span><span class="pln">viewName</span><span class="pun">,</span><span class="pln">transition</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+<li><h4 id="h4_5">onready</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">onready</span><span class="pun">()</span></code></pre>
+
+<p>这是Controller的第三个时态，在View渲染完成后，事件绑定、DOM操作等业务逻辑都在该时态中完成；每段逻辑使用session.event包装，从而建立事件与视图block的对应关系。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">onready </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+
+    session</span><span class="pun">.</span><span class="kwd">event</span><span class="pun">(</span><span class="pln">blockID</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+
+    </span><span class="pun">});</span><span class="pln">
+
+</span><span class="pun">};</span></code></pre></li>
+<li><h4 id="h4_6">ondestroy</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">ondestroy</span></code></pre>
+
+<p>当Controller被销毁时，ondestroy()将被调用。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">ondestroy </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+<li><h4 id="h4_7">onerror</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln"> env</span><span class="pun">.</span><span class="pln">onerror</span></code></pre>
+
+<p>当前Controller收到错误消息时被触发</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">onerror </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+</ul></li>
+<li><h3 id="h3_51">subscribe</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">  </span><span class="pun">不带参数：</span><span class="pln"> env</span><span class="pun">.</span><span class="pln">subscribe</span><span class="pun">(</span><span class="pln">publishName</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">collection</span><span class="pun">){});</span><span class="pln">
+        </span><span class="pun">带参数：</span><span class="pln">  env</span><span class="pun">.</span><span class="pln">subscribe</span><span class="pun">(</span><span class="pln">publishName</span><span class="pun">,</span><span class="pln">arg1</span><span class="pun">,</span><span class="pln">arg2</span><span class="pun">,</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">collection</span><span class="pun">){});</span></code></pre>
+
+<p>关于subscribe方法请查看“Publish/Subscribe”章节。</p></li>
+<li><h3 id="h3_52">session</h3>
+
+<ul>
+<li><h4 id="h4_8">set</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">session</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln">key</span><span class="pun">,</span><span class="pln">value</span><span class="pun">)</span></code></pre>
+
+<p>在session中设置“key”的值</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="str">'page'</span><span class="pun">,</span><span class="lit">10</span><span class="pun">);</span></code></pre></li>
+<li><h4 id="h4_9">get</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">session</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">key</span><span class="pun">)</span></code></pre>
+
+<p>获取session中“key”的值</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="str">'page'</span><span class="pun">);</span></code></pre></li>
+<li><h4 id="h4_10">bind</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">session</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">(</span><span class="pln">block</span><span class="pun">-</span><span class="pln">id</span><span class="pun">,</span><span class="pln">dataMap</span><span class="pun">)</span></code></pre>
+
+<p>将数据绑定到视图中block-id容器</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">bind</span><span class="pun">(</span><span class="str">'student-list'</span><span class="pun">,{</span><span class="pln">
+
+    data </span><span class="pun">:</span><span class="pln"> </span><span class="typ">Collection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">()</span><span class="pln">
+
+</span><span class="pun">});</span></code></pre>
+
+<p>一般在subscribe(publishName,function(Collection){})的function(Collection){}中使用。</p></li>
+<li><h4 id="h4_11">event</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">seesion</span><span class="pun">.</span><span class="kwd">event</span><span class="pun">(</span><span class="pln">block</span><span class="pun">-</span><span class="pln">id</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(){})</span></code></pre>
+
+<p>建立事件与视图block的对应关系</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="kwd">event</span><span class="pun">(</span><span class="str">'student-list'</span><span class="pun">，</span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+
+    </span><span class="kwd">var</span><span class="pln"> submitButton </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'submit'</span><span class="pun">);</span><span class="pln">
+
+    submitButton</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'click'</span><span class="pun">,</span><span class="pln"> submitMessage</span><span class="pun">);</span><span class="pln"> 
+
+</span><span class="pun">});</span></code></pre></li>
+<li><h4 id="h4_12">eventMap</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">session</span><span class="pun">.</span><span class="pln">eventMap</span><span class="pun">(</span><span class="pln">id</span><span class="pun">,</span><span class="pln">eventMap</span><span class="pun">)</span></code></pre>
+
+<p>对一个标签绑定多个事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">eventMap</span><span class="pun">(</span><span class="str">'inputMessage'</span><span class="pun">,{</span><span class="pln">
+
+    </span><span class="str">'focus'</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span><span class="pln">    
+        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'focus!'</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+
+    </span><span class="str">'blur'</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span><span class="pln">
+        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">'blur'</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+
+</span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><p>id</p>
+
+<p>View中标签ID</p></li>
+<li><p>eventMap</p>
+
+<p>事件Map</p></li>
+</ul></li>
+<li><h4 id="h4_13">commit</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">session</span><span class="pun">.</span><span class="pln">commit</span><span class="pun">()</span></code></pre>
+
+<p>触发数据对应视图block的更新</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">session</span><span class="pun">.</span><span class="pln">commit</span><span class="pun">();</span></code></pre></li>
+</ul></li>
+</ul>
+
+<h3 id="h3_53">sub controller</h3>
+
+<p>创建的Controller可以作为另外一个Controller的子Controller使用。</p>
+
+<ul>
+<li><h4 id="h4_14">callSubController</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">  callSubController</span><span class="pun">(</span><span class="pln">queryPath</span><span class="pun">,</span><span class="pln">options</span><span class="pun">)</span></code></pre>
+
+<p>在当前Controller中调用一个子Controller，配合show()和hide()方法使用。</p>
+
+<ul>
+<li><h4 id="h4_15">isready</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">isready</span><span class="pun">(){}</span></code></pre>
+
+<p>当前Controller的子Controller已经加载完成</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">isready </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+<li><h4 id="h4_16">show</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">show</span><span class="pun">(){}</span></code></pre>
+
+<p>显示当前当前Controller的子Controller</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">show </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+<li><h4 id="h4_17">hide</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">hide</span><span class="pun">(){}</span></code></pre>
+
+<p>隐藏当前Controller的子Controller</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">hide </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+</span><span class="pun">};</span></code></pre></li>
+<li><h4 id="h4_18">destory</h4>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">env</span><span class="pun">.</span><span class="pln">destory</span><span class="pun">(){}</span></code></pre>
+
+<p>销毁当前Controller的子Controller</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">destroy </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">      </span></code></pre></li>
+</ul></li>
+</ul>
+
+<h2 id="h2_7">Touch</h2>
+
+<p>在开发移动端的应用中会使用到很多的手势操作，例如一指拖动、两指旋转等等，为了方便开放者快速集成这些手势，在Clouda中内置了事件和手势库<code>Library.touch</code>，下面将详细的介绍如何使用Library.touch。</p>
+
+<p>手势事件处理类API目前支持以下功能：</p>
+
+<ul>
+<li>事件配置</li>
+<li>事件代理</li>
+<li>事件绑定</li>
+<li>解除事件代理</li>
+<li>解除事件绑定</li>
+<li>触发事件</li>
+</ul>
+
+<h3 id="h3_54">事件配置</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">touch</span><span class="pun">.</span><span class="pln">config</span><span class="pun">(</span><span class="pln">config</span><span class="pun">)</span></code></pre>
+
+<p><strong>功能描述：</strong></p>
+
+<p>对手势事件库进行全局配置。</p>
+
+<p><strong>参数描述：</strong></p>
+
+<ul>
+<li><p>config为一个对象</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">{</span><span class="pln">
+    tap</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">                  </span><span class="com">//tap类事件开关, 默认为true</span><span class="pln">
+    doubleTap</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">            </span><span class="com">//doubleTap事件开关， 默认为true</span><span class="pln">
+    hold</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">                 </span><span class="com">//hold事件开关, 默认为true</span><span class="pln">
+    holdTime</span><span class="pun">:</span><span class="pln"> </span><span class="lit">650</span><span class="pun">,</span><span class="pln">              </span><span class="com">//hold时间长度</span><span class="pln">
+    swipe</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">                </span><span class="com">//swipe事件开关</span><span class="pln">
+    swipeTime</span><span class="pun">:</span><span class="pln"> </span><span class="lit">300</span><span class="pun">,</span><span class="pln">             </span><span class="com">//触发swipe事件的最大时长</span><span class="pln">
+    swipeMinDistance</span><span class="pun">:</span><span class="pln"> </span><span class="lit">18</span><span class="pun">,</span><span class="pln">       </span><span class="com">//swipe移动最小距离</span><span class="pln">
+    swipeFactor</span><span class="pun">:</span><span class="pln"> </span><span class="lit">5</span><span class="pun">,</span><span class="pln">             </span><span class="com">//加速因子, 值越大变化速率越快</span><span class="pln">
+    drag</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">                 </span><span class="com">//drag事件开关</span><span class="pln">
+    pinch</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln">                </span><span class="com">//pinch类事件开关</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+</ul>
+
+<h3 id="h3_55">事件代理</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">touch</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="pln"> delegateElement</span><span class="pun">,</span><span class="pln"> types</span><span class="pun">,</span><span class="pln"> selector</span><span class="pun">,</span><span class="pln"> callback </span><span class="pun">);</span></code></pre>
+
+<p><strong>功能描述：</strong></p>
+
+<p>事件代理方法。</p>
+
+<p><strong>参数描述：</strong></p>
+
+<table style="border-style: solid; border-width: 0pt;" cellspacing="0" cellpadding="5px" border="1">
+    <tbody>
+        <tr>
+            <th>参数</th>
+            <th>类型</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+           <td>delegateElement</td>
+           <td>element或string</td>
+           <td>事件代理元素或选择器</td>
+        </tr>
+        <tr>
+           <td>types</td>
+           <td>string</td>
+           <td>手势事件的类型, 可接受多个事件以空格分开；支持原生事件的透传。目前支持的具体事件类型，详见<a href="#001">《手势事件类型》</a>。</td>
+        </tr>
+        <tr>
+           <td>selector</td>
+           <td>string</td>
+           <td>代理子元素选择器,</td>
+        </tr>
+        <tr>
+           <td>callback</td>
+           <td>function</td>
+           <td>事件处理函数，如需了解手势库支持的新属性，详见<a href="#002">《事件对象》</a></td>
+        </tr>
+</tbody>
+</table>
+
+<p>**</p>
+
+<p id="001">手势事件类型</p>
+
+<p>**</p>
+
+<p>支持的手势事件类型：</p>
+
+<table style="border-style: solid; border-width: 0pt;" cellspacing="0" cellpadding="5px" border="1">
+    <tbody>
+        <tr>
+            <th>分类</th>
+            <th>参数</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td rowspan="5">缩放</td>
+            <td>pinchstart</td>
+            <td>缩放手势起点</td>
+        </tr>
+        <tr>
+            <td>pinchend</td>
+            <td>缩放手势终点</td>
+        </tr>
+        <tr>
+            <td>pinch</td>
+            <td>缩放手势</td>
+        </tr>
+        <tr>
+            <td>pinchin</td>
+            <td>收缩</td>
+        </tr>
+        <tr>
+            <td>pinchout</td>
+            <td>放大</td>
+        </tr>
+        <tr>
+            <td rowspan="3">旋转</td>
+            <td>rotateleft</td>
+            <td>向左旋转</td>
+        </tr>
+        <tr>
+            <td>rotateright</td>
+            <td>向右旋转</td>
+        </tr>
+        <tr>
+            <td>rotate</td>
+            <td>旋转</td>
+        </tr>
+        <tr>
+            <td rowspan="8">滑动</td>
+            <td>swipestart</td>
+            <td>滑动手势起点</td>
+        </tr>
+        <tr>
+            <td>swiping</td>
+            <td>滑动中</td>
+        </tr>
+        <tr>
+            <td>swipeend</td>
+            <td>滑动手势终点</td>
+        </tr>
+        <tr>
+            <td>swipeleft</td>
+            <td>向左滑动</td>
+        </tr>
+        <tr>
+            <td>swiperight</td>
+            <td>向右滑动</td>
+        </tr>
+        <tr>
+            <td>swipeup</td>
+            <td>向上滑动</td>
+        </tr>
+        <tr>
+            <td>swipedown</td>
+            <td>向下滑动</td>
+        </tr>
+        <tr>
+            <td>swipe</td>
+            <td>滑动</td>
+        </tr>
+        <tr>
+            <td>拖动开始</td>
+            <td>dragstart</td>
+            <td>拖动屏幕</td>
+        </tr>
+        <tr>
+            <td>拖动</td>
+            <td>drag</td>
+            <td>拖动手势</td>
+        </tr>
+        <tr>
+            <td>拖动结束</td>
+            <td>dragend</td>
+            <td>拖动屏幕</td>
+        </tr>
+        <tr>
+            <td>拖动</td>
+            <td>drag</td>
+            <td>拖动手势</td>
+        </tr>
+        <tr>
+            <td>长按</td>
+            <td>hold</td>
+            <td>长按屏幕</td>
+        </tr>
+        <tr>
+            <td rowspan="2">敲击</td>
+            <td>tap</td>
+            <td>单击屏幕</td>
+        </tr>
+        <tr>
+            <td>doubletap</td>
+            <td>双击屏幕</td>
+        </tr>
+
+</tbody></table>
+
+<p>更多使用实例请参考<a href="http://code.baidu.com/" target="_blank">http://code.baidu.com</a></p>
+
+<p>**</p>
+
+<p id="002">事件对象</p>
+
+<p>**</p>
+
+<p>事件处理函数的第一个参数为事件对象，除了原生属性之外，百度手势库还提供了部分新属性。</p>
+
+<p>以下为手势新增的属性：</p>
+
+<table style="border-style: solid; border-width: 0pt;" cellspacing="0" cellpadding="5px" border="1">
+    <tbody>
+        <tr>
+            <th>属性</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+           <td>originEvent</td>
+           <td>触发某事件的原生对象</td>
+        </tr>
+        <tr>
+           <td>type</td>
+           <td>事件的名称</td>
+        </tr>
+        <tr>
+           <td>rotation </td>
+           <td>旋转角度</td>
+        </tr>
+        <tr>
+           <td>scale</td>
+           <td>缩放比例</td>
+        </tr>
+        <tr>
+           <td>direction</td>
+           <td>操作的方向属性</td>
+        </tr>
+        <tr>
+           <td>fingersCount</td>
+           <td>操作的手势数量</td>
+        </tr>
+        <tr>
+           <td>position</td>
+           <td>相关位置信息, 不同的操作产生不同的位置信息</td>
+        </tr>
+        <tr>
+           <td>distance</td>
+           <td>swipe类两点之间的位移</td>
+        </tr>
+        <tr>
+           <td>distanceX, x</td>
+           <td>手势事件x方向的位移值, 向左移动时为负数</td>
+        </tr>
+        <tr>
+           <td>distanceY, y</td>
+           <td>手势事件y方向的位移值, 向上移动时为负数</td>
+        </tr>
+        <tr>
+           <td>angle</td>
+           <td>rotate事件触发时旋转的角度</td>
+        </tr>
+        <tr>
+           <td>duration</td>
+           <td>touchstart 与 touchend之间的时间戳</td>
+        </tr>
+        <tr>
+           <td>factor</td>
+           <td>swipe事件加速度因子</td>
+        </tr>
+        <tr>
+           <td>startRotate</td>
+           <td>启动单指旋转方法，在某个元素的touchstart触发时调用</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3 id="h3_56">事件绑定</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">touch</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="pln"> element</span><span class="pun">,</span><span class="pln"> types</span><span class="pun">,</span><span class="pln"> callback </span><span class="pun">);</span></code></pre>
+
+<p><strong>功能描述：</strong></p>
+
+<p>事件绑定方法，根据参数区分事件绑定和事件代理。</p>
+
+<p><strong>参数描述：</strong></p>
+
+<table style="border-style: solid; border-width: 0pt;" cellspacing="0" cellpadding="5px" border="1">
+    <tbody>
+        <tr>
+            <th>参数</th>
+            <th>类型</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+           <td>element</td>
+           <td>element或string</td>
+           <td>事件绑定元素或选择器</td>
+        </tr>
+        <tr>
+           <td>types</td>
+           <td>string</td>
+           <td>事件的类型, 可接受多个事件以空格分开，支持原生事件的透传。具体参数说明，同“事件代理”方法中的“types”参数说明。</td>
+        </tr>
+        <tr>
+           <td>callback</td>
+           <td>function</td>
+           <td>事件处理函数，具体参数说明，同“事件代理”方法中的“callback”参数说明。
+        </td>
+        </tr>
+</tbody>
+</table>
+
+<h3 id="h3_57">解除事件代理</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">touch</span><span class="pun">.</span><span class="pln">off</span><span class="pun">(</span><span class="pln"> delegateElement</span><span class="pun">,</span><span class="pln"> types</span><span class="pun">,</span><span class="pln"> selector</span><span class="pun">,</span><span class="pln"> callback </span><span class="pun">)</span></code></pre>
+
+<p><strong>功能描述：</strong></p>
+
+<p>解除某元素上的事件代理。</p>
+
+<p><strong>参数描述：</strong></p>
+
+<table style="border-style: solid; border-width: 0pt;" cellspacing="0" cellpadding="5px" border="1">
+    <tbody>
+        <tr>
+            <th>参数</th>
+            <th>类型</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+           <td>delegateElement</td>
+           <td>element或string</td>
+           <td>元素对象或选择器</td>
+        </tr>
+        <tr>
+           <td>types</td>
+           <td>string</td>
+           <td>事件的类型，具体参数说明，同“事件代理”方法中的“types”参数说明。</td>
+        </tr>
+        <tr>
+           <td>selector</td>
+           <td>string</td>
+           <td>代理子元素选择器</td>
+        </tr>
+        <tr>
+           <td>callback</td>
+           <td>function</td>
+           <td>事件处理函数, 移除函数与绑定函数必须为同一引用。具体参数说明，同“事件代理”方法中的“callback”参数说明。</td>
+        </tr>
+</tbody>
+</table>
+
+<h3 id="h3_58">解除事件绑定</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">touch</span><span class="pun">.</span><span class="pln">off</span><span class="pun">(</span><span class="pln"> element</span><span class="pun">,</span><span class="pln"> types</span><span class="pun">,</span><span class="pln"> callback </span><span class="pun">)</span></code></pre>
+
+<p><strong>功能描述：</strong></p>
+
+<p>解除某元素上的事件绑定，根据参数区分事件绑定和事件代理。</p>
+
+<p><strong>参数描述：</strong></p>
+
+<table style="border-style: solid; border-width: 0pt;" cellspacing="0" cellpadding="5px" border="1">
+    <tbody>
+        <tr>
+            <th>参数</th>
+            <th>类型</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+            <td>element</td>
+            <td>element或string</td>
+            <td>元素对象、选择器</td>
+        </tr>
+        <tr>
+            <td>types</td>
+            <td>string</td>
+            <td>事件的类型，具体参数说明，同“事件代理”方法中的“types”参数说明。</td>
+        </tr>
+        <tr>
+            <td>callback</td>
+            <td>function</td>
+            <td>事件处理函数, 移除函数与绑定函数必须为同一引用;具体参数说明，同“事件代理”方法中的“callback”参数说明。</td>
+        </tr>
+</tbody>
+</table>
+
+<h3 id="h3_59">触发事件</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">touch</span><span class="pun">.</span><span class="pln">trigger</span><span class="pun">(</span><span class="pln">element</span><span class="pun">,</span><span class="pln"> type</span><span class="pun">);</span></code></pre>
+
+<p><strong>功能描述：</strong></p>
+
+<p>触发某个元素上的某事件。</p>
+
+<p><strong>参数描述：</strong></p>
+
+<table style="border-style: solid; border-width: 0pt;" cellspacing="0" cellpadding="5px" border="1">
+    <tbody>
+        <tr>
+            <th>参数</th>
+            <th>类型</th>
+            <th>描述</th>
+        </tr>
+        <tr>
+           <td>element</td>
+           <td>element或string</td>
+           <td>元素对象或选择器</td>
+        </tr>
+        <tr>
+           <td>type</td>
+           <td>string</td>
+           <td>事件的类型，具体参数说明，同“事件代理”方法中的“types”参数说明。</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2 id="h2_8">Publish/Subscribe</h2>
+
+<h3 id="h3_60">subscribe</h3>
+
+<p>订阅被发布的数据，与pubilsh配合使用</p>
+
+<ul>
+<li><p>不带参数 env.subscribe(publishName, function(collection){});</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">subscribe</span><span class="pun">(</span><span class="str">"pub-allStudents"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">studentCollection</span><span class="pun">){</span><span class="pln">
+
+</span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><p>pulishName</p>
+
+<p>所定义的Publish的唯一名称，在一个App内全局唯一，该参数与sumeru.publish(modelName, publishName,function(callback))中的publishName名称需要保持一致。</p></li>
+<li><p>function(Collection){}</p>
+
+<p>Subscribe成功获得数据时，被调用的响应方法。</p></li>
+</ul></li>
+<li><p>带参数 env.subscribe(publishName,arg1,arg2, ... , function(collection){});</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">subscribe</span><span class="pun">(</span><span class="str">"pub-StudentsWithGender"</span><span class="pun">,</span><span class="pln"> </span><span class="str">"male"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">msgCollection</span><span class="pun">){</span><span class="pln">
+
+</span><span class="pun">});</span></code></pre></li>
+<li><h4 id="h4_19">subscribeByPage</h4>
+
+<p>分页订阅数据</p>
+
+<ul>
+<li><p>不带参数 env.subscribeByPage(publishName, options, function(collection){});</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> pageOptionpage </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    pagesize </span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> 
+    page </span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln">
+    uniqueField </span><span class="pun">:</span><span class="pln"> </span><span class="str">'time'</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+
+env</span><span class="pun">.</span><span class="pln">subscribeByPage</span><span class="pun">(</span><span class="str">"pub-allStudents"</span><span class="pun">,</span><span class="pln"> pageOption</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">studentCollection</span><span class="pun">){</span><span class="pln">
+
+</span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><p>options</p>
+
+<p>分页设置</p>
+
+<ul>
+<li><p>pageSize</p>
+
+<p>每页数据的数量</p></li>
+<li><p>page</p>
+
+<p>页码</p></li>
+<li><p>uniqueField</p>
+
+<p>排序的唯一字段名</p></li>
+</ul></li>
+</ul></li>
+<li><p>带参数 env.subscribeByPage(publishName, options, arg1,arg2, ... , function(collection){});</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">env</span><span class="pun">.</span><span class="pln">subscribeByPage</span><span class="pun">(</span><span class="str">"pub-StudentsWithGender"</span><span class="pun">,</span><span class="pln"> pageOption</span><span class="pun">,</span><span class="pln"> </span><span class="str">"male"</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">msgCollection</span><span class="pun">){</span><span class="pln">
+
+</span><span class="pun">});</span></code></pre></li>
+</ul></li>
+<li><h4 id="h4_20">prioritySubscribe</h4></li>
+</ul>
+
+<p>在断线重新连接的情况下，使用prioritySubscribe方法订阅数据优先被调用，使用方式与subscribe相同。</p>
+
+<h3 id="h3_61">publish</h3>
+
+<p>发布数据的方法，其运行在Server上。</p>
+
+<ul>
+<li><p>不带参数 sumeru.publish(modelName,pubName,function(callback){},options)</p>
+
+<ul>
+<li><p>modelName</p>
+
+<p>被发布数据所属的Model名称</p></li>
+<li><p>pubName</p>
+
+<p>所定义的Publish的唯一名称，在一个App内全局唯一，该参数与Controller中subscribe()成对使用。</p></li>
+<li><p>function(callback)</p>
+
+<p>描述数据发布规则的自定义函数，在这里定义被发布数据所需要符合的条件。</p></li>
+<li><p>options</p>
+
+<p>可在此添加以下六种事件</p>
+
+<ul>
+<li><p>beforeInsert</p>
+
+<p>在实际插入数据到数据库前的事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">beforeInsert </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">serverCollection</span><span class="pun">,</span><span class="pln"> structData</span><span class="pun">,</span><span class="pln"> userinfo</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){</span><span class="pln">
+    callback</span><span class="pun">(</span><span class="pln">structData</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<ul>
+<li><p>structData</p>
+
+<p>需要插入到数据库的数据，我们可以对该数据进行操作，然后将数据插入到数据库中，如果对数据没有修改，则将原数据添加到数据库中。</p></li>
+<li><p>callback</p>
+
+<p>before系列的事件中如果不添加 callback()，将阻止数据对数据库的影响。</p></li>
+<li><p>callback(structData)</p>
+
+<p>如果需要对原数据进行修改，可以传入参数structData</p></li>
+</ul></li>
+<li><p>afterInsert</p>
+
+<p>在实际插入数据到数据库后的事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">afterInsert </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">serverCollection</span><span class="pun">,</span><span class="pln"> structData</span><span class="pun">){</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><p>beforeUpdate</p>
+
+<p>在实际更新数据库数据前的事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">beforeUpdate </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">serverCollection</span><span class="pun">,</span><span class="pln"> structData</span><span class="pun">,</span><span class="pln"> userinfo</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){</span><span class="pln">
+    callback</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><p>afterUpdate</p>
+
+<p>在实际更新数据库数据后的事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">afterUpdate </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">serverCollection</span><span class="pun">,</span><span class="pln"> structData</span><span class="pun">){</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><p>beforeDelete</p>
+
+<p>在实际删除数据库数据前的事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">beforeDelete </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">serverCollection</span><span class="pun">,</span><span class="pln"> structData</span><span class="pun">,</span><span class="pln"> userinfo</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){</span><span class="pln">
+    callback</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><p>afterDelete</p>
+
+<p>在实际删除数据库数据后的事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">afterDelete </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">serverCollection</span><span class="pun">,</span><span class="pln"> structData</span><span class="pun">){</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+</ul></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">sumeru</span><span class="pun">){</span><span class="pln">
+    sumeru</span><span class="pun">.</span><span class="pln">publish</span><span class="pun">(</span><span class="str">'student'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'pub-allStudents'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span><span class="pln">
+        </span><span class="kwd">var</span><span class="pln"> collection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span><span class="pln">
+
+        collection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">({},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln"> items</span><span class="pun">){</span><span class="pln">
+            callback</span><span class="pun">(</span><span class="pln">items</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><p>带参数 sumeru.publish(modelName,pubName,function(arg1, ..., callback){},options)</p>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">sumeru</span><span class="pun">){</span><span class="pln">
+    sumeru</span><span class="pun">.</span><span class="pln">publish</span><span class="pun">(</span><span class="str">'student'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'pub-allStudents'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">gender</span><span class="pun">,</span><span class="pln">callback</span><span class="pun">){</span><span class="pln">
+        </span><span class="kwd">var</span><span class="pln"> collection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span><span class="pln">
+
+        collection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">({</span><span class="str">'gender'</span><span class="pun">:</span><span class="pln">gender</span><span class="pun">},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln"> items</span><span class="pun">){</span><span class="pln">
+            callback</span><span class="pun">(</span><span class="pln">items</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><h4 id="h4_21">publishByPage</h4>
+
+<p>分页发布数据</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">publishByPage</span><span class="pun">(</span><span class="pln">modelName</span><span class="pun">,</span><span class="pln">pubName</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">arg1</span><span class="pun">,</span><span class="pln">arg2</span><span class="pun">,...,</span><span class="pln">pageOptions</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){},</span><span class="pln">options</span><span class="pun">)</span></code></pre>
+
+<ul>
+<li><p>options</p>
+
+<p>分页设置，有Controller中subscribeByPage()传入。</p></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">publishByPage</span><span class="pun">(</span><span class="str">'student'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'pub-allStudents'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">gender</span><span class="pun">,</span><span class="pln">options</span><span class="pun">,</span><span class="pln">callback</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> collection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span><span class="pln">
+    collection</span><span class="pun">.</span><span class="pln">find</span><span class="pun">({},{</span><span class="pln"> sort    </span><span class="pun">:{</span><span class="str">'time'</span><span class="pun">:-</span><span class="lit">1</span><span class="pun">},</span><span class="pln">
+                      limit   </span><span class="pun">:</span><span class="pln"> options</span><span class="pun">.</span><span class="pln">pagesize</span><span class="pun">,</span><span class="pln">
+                      skip    </span><span class="pun">:</span><span class="pln"> </span><span class="pun">(</span><span class="pln">options</span><span class="pun">.</span><span class="pln">page</span><span class="pun">-</span><span class="lit">1</span><span class="pun">)*</span><span class="pln">options</span><span class="pun">.</span><span class="pln">pagesize</span><span class="pun">,</span><span class="pln">
+                      </span><span class="str">"gender"</span><span class="pun">:</span><span class="pln"> gender
+                     </span><span class="pun">},</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln"> items</span><span class="pun">){</span><span class="pln">
+        callback</span><span class="pun">(</span><span class="pln">items</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><p>sort</p>
+
+<p>排序</p></li>
+<li><p>limit</p>
+
+<p>每页显示的个数</p></li>
+<li><p>skip</p>
+
+<p>当前页与起始页间隔的个数</p></li>
+</ul>
+
+<p>详细的使用情况请查看《Example》文档中的实例。</p></li>
+<li><h4 id="h4_22">publishPlain</h4>
+
+<p>用于发布简单对象，而非Collection。</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">publishPlain</span><span class="pun">(</span><span class="pln">modelName</span><span class="pun">,</span><span class="pln">pubName</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){},</span><span class="pln">options</span><span class="pun">)</span></code></pre>
+
+<p>实例：</p>
+
+<p>如果需要发布Collection中数据的总数量，可使用下面方法：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">fw</span><span class="pun">.</span><span class="pln">publishPlain</span><span class="pun">(</span><span class="str">'student'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'pub-allStudents'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> collection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span><span class="pln">
+
+    collection</span><span class="pun">.</span><span class="pln">count</span><span class="pun">({},</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln"> count</span><span class="pun">){</span><span class="pln">
+        callback</span><span class="pun">(</span><span class="pln">count</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">});</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>下面的三种方法是包含权限中心的身份验证的Publish。</p></li>
+<li><h4 id="h4_23">securePublish</h4>
+
+<p>在身份验证成功的情况下发布数据</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">publish</span><span class="pun">(</span><span class="pln">modelName</span><span class="pun">,</span><span class="pln">pubName</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">userinfo</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){},</span><span class="pln">options</span><span class="pun">)</span></code></pre></li>
+<li><h4 id="h4_24">securePublishByPage</h4>
+
+<p>在身份验证成功的情况下分页发布数据</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">securePublishByPage</span><span class="pun">(</span><span class="pln">modelName</span><span class="pun">,</span><span class="pln">pubName</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">pageOptions</span><span class="pun">,</span><span class="pln">userinfo</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){},</span><span class="pln">options</span><span class="pun">)</span></code></pre></li>
+<li><h4 id="h4_25">securePublishPlain</h4>
+
+<p>在身份验证成功的情况下发布简单对象</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">securePublishPlain</span><span class="pun">(</span><span class="pln">modelName</span><span class="pun">,</span><span class="pln">pubName</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">userinfo</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">){},</span><span class="pln">options</span><span class="pun">)</span></code></pre></li>
+<li><h4 id="h4_26">external</h4>
+
+<p>实现了三方数据同步的方法，用来满足从三方网站/三方接口获取和同步数据的需求。</p>
+
+<ul>
+<li><p>extfind(pubName,callback)</p>
+
+<p>在publish文件中发布第三方数据</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">fw</span><span class="pun">.</span><span class="pln">publish</span><span class="pun">(</span><span class="str">'news'</span><span class="pun">,</span><span class="str">'pubnews'</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">callback</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> collection </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">;</span><span class="pln">
+
+    collection</span><span class="pun">.</span><span class="pln">extfind</span><span class="pun">(</span><span class="str">'pubnews'</span><span class="pun">,</span><span class="pln">callback</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">});</span></code></pre></li>
+</ul>
+
+<p>使用该方法需要在publish下添加一个如何获取第三方数据的配置文件</p>
+
+<ul>
+<li><p>config[pubname]</p>
+
+<ul>
+<li><p>pubname</p>
+
+<p>与publish中collection.extfind(pubname,callback)方法pubname一致，全局唯一</p></li>
+<li><p>uniqueColumn</p>
+
+<p>uniqueColumn为三方数据唯一标识，类型为<code>String</code></p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">uniqueColumn </span><span class="pun">:</span><span class="pln"> </span><span class="str">"name"</span><span class="pun">,</span></code></pre></li>
+<li><p>fetchUrl: function((/** arg1, arg2, arg3 */)){}</p>
+
+<p>指定抓取的URL。arg1,arg2为传递的参数</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">fetchUrl </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="com">/** arg1, arg2, arg3 */</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="str">'http://some.host.com'</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><p>resolve : function(originData){}</p>
+
+<p>resolve方法作用是将抓取回来的原始数据(originData)转化成为符合Model定义的数据(resolved)</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">resolve </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">originData</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> j </span><span class="pun">=</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">originData</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> resolved </span><span class="pun">=</span><span class="pln"> j</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> resolved</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre></li>
+<li><p>fetchInterval</p>
+
+<p>fetchInterval为可选参数，用来指定抓取时间间隔，单位为ms</p></li>
+<li><p>buffer</p>
+
+<p>buffer为可选参数，值为true时表示获取原始Buffer，否则获取原始数据字符串</p></li>
+<li><p>type</p>
+
+<p>声明此模块为归属为'external'</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    type </span><span class="pun">:</span><span class="pln"> </span><span class="str">'external'</span><span class="pun">,</span><span class="pln">
+    config </span><span class="pun">:</span><span class="pln"> config
+</span><span class="pun">}</span></code></pre></li>
+</ul>
+
+<p>实例如下：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="com">/**
+ * 获取三方数据信息，由开发者自定义
+ */</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> runnable</span><span class="pun">(){</span><span class="pln">
+    </span><span class="com">//{Object} config是所有三方publish配置的容器</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> config </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span><span class="pln">
+
+    config</span><span class="pun">[</span><span class="str">'pubext'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">//{String} uniqueColumn为三方数据唯一标识</span><span class="pln">
+        uniqueColumn </span><span class="pun">:</span><span class="pln"> </span><span class="str">"name"</span><span class="pun">,</span><span class="pln">
+
+        </span><span class="com">//{Function} fetchUrl的参数就是订阅时发起的参数，返回值为pubext所抓取的url地址</span><span class="pln">
+        fetchUrl </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="com">/** arg1, arg2, arg3 */</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="str">'http://some.host.com'</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        </span><span class="com">//{Function} resolve方法作用是将抓取回来的原始数据(originData)转化成为符合Model定义的数据(resolved)</span><span class="pln">
+        resolve </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">originData</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">var</span><span class="pln"> j </span><span class="pun">=</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">originData</span><span class="pun">);</span><span class="pln">
+            </span><span class="kwd">var</span><span class="pln"> resolved </span><span class="pun">=</span><span class="pln"> j</span><span class="pun">;</span><span class="pln">
+
+            </span><span class="kwd">return</span><span class="pln"> resolved</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        </span><span class="com">//{Number} fetchInterval为可选参数，用来指定抓取时间间隔，单位为ms</span><span class="pln">
+        fetchInterval </span><span class="pun">:</span><span class="pln"> </span><span class="lit">60</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1000</span><span class="pun">,</span><span class="pln">
+
+        </span><span class="com">//{Boolean} buffer为可选参数，值为true时表示获取原始Buffer，否则获取原始数据字符串</span><span class="pln">
+        buffer </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">false</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="com">//最后需要声明此模块为归属为'external'</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        type </span><span class="pun">:</span><span class="pln"> </span><span class="str">'external'</span><span class="pun">,</span><span class="pln">
+        config </span><span class="pun">:</span><span class="pln"> config
+    </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> runnable</span><span class="pun">;</span></code></pre></li>
+<li><p>指定三方增/删/改接口以及数据</p>
+
+<p>当数据发生变化时，如何使用Clouda达到三方数据同步的效果，具体实现方法如下：</p>
+
+<ul>
+<li><p>较为紧凑的声明方式</p>
+
+<ul>
+<li><p>postUrl</p>
+
+<p><code>postUrl</code>方法用来指定三方post接口的地址信息, 参数type为增量类型，增量类型为'insert','update','delete'三者之一;</p></li>
+<li><p>prepare</p>
+
+<p><code>prepare</code>方法用来将增量数据转化成为符合三方POST接口要求的post数据，参数type同为增量类型，参数data为增量的实际数据。</p></li>
+</ul>
+
+<p>实例如下：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="com">/**
+ *  三方数据POST请求信息，由开发者自定义
+ */</span><span class="pln">
+</span><span class="kwd">function</span><span class="pln"> runnable</span><span class="pun">(){</span><span class="pln">
+
+    </span><span class="kwd">var</span><span class="pln"> config </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+
+    config</span><span class="pun">[</span><span class="str">'pubext'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+        </span><span class="com">/**
+         * 声明三方POST接口地址
+         * {String} type为'delete', 'insert', 'update'其中之一
+         * 如果subscribe时带参数，参数会按照subscribe顺序接在postUrl的参数中
+         */</span><span class="pln">
+        postUrl </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">type </span><span class="com">/** arg1, arg2, arg3... */</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">var</span><span class="pln"> options </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                host </span><span class="pun">:</span><span class="pln"> </span><span class="str">'some.host.com'</span><span class="pun">,</span><span class="pln">
+                path </span><span class="pun">:</span><span class="pln"> </span><span class="str">'/'</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> type </span><span class="pun">,</span><span class="pln">
+                headers</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="com">//在此自定义header内容，clouda默认的 'Content-Type': 'application/x-www-form-urlencoded'</span><span class="pln">
+                    </span><span class="str">'Content-Type'</span><span class="pun">:</span><span class="pln"> </span><span class="pun">...</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> options</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        </span><span class="com">/**
+         * prepare方法将增量数据转化为符合三方要求的post数据。
+         * {String} type为增量操作，值为'delete', 'insert', 'update'其一;
+         * {Object} data为增量数据，如：{ name : 'user1', age : 26 }。
+         */</span><span class="pln">
+        prepare </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">type</span><span class="pun">,</span><span class="pln"> data</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">var</span><span class="pln"> prepareData </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span><span class="pln">  </span><span class="com">//prepareData为三方post所需的data</span><span class="pln">
+            </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">type </span><span class="pun">===</span><span class="pln"> </span><span class="str">"delete"</span><span class="pun">){</span><span class="pln">
+                prepareData</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">name</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">type </span><span class="pun">===</span><span class="pln"> </span><span class="str">"insert"</span><span class="pun">){</span><span class="pln">
+                prepareData</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">name</span><span class="pun">;</span><span class="pln">
+                prepareData</span><span class="pun">.</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">age</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="kwd">else</span><span class="pun">{</span><span class="pln">
+                prepareData</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">name</span><span class="pun">;</span><span class="pln">
+                prepareData</span><span class="pun">.</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">age</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+
+            </span><span class="kwd">return</span><span class="pln"> prepareData</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        type </span><span class="pun">:</span><span class="pln"> </span><span class="str">'external'</span><span class="pun">,</span><span class="pln">
+        config </span><span class="pun">:</span><span class="pln"> config
+    </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> runnable</span><span class="pun">;</span></code></pre></li>
+<li><p>较为工整的声明方式</p>
+
+<ul>
+<li><p><code>deleteUrl</code>，<code>insertUrl</code>，<code>updateUrl</code></p>
+
+<p>三个方法作用等同于<code>postUrl</code>，返回不同操作下三方接口url信息</p></li>
+<li><p><code>onDelete</code>，<code>onInsert</code>，<code>onUpdate</code></p>
+
+<p>三个方法作用等同于<code>prepare</code>方法, 返回经过处理，传给三方接口的post数据</p></li>
+</ul>
+
+<p>实例如下：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">function</span><span class="pln"> runnable</span><span class="pun">(){</span><span class="pln">
+
+    </span><span class="kwd">var</span><span class="pln"> config </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span><span class="pln">
+
+    config</span><span class="pun">[</span><span class="str">'pubext'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">//arg1, arg2, arg3是subscribe时输入的参数</span><span class="pln">
+        deleteUrl </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="com">/** arg1, arg2, arg3... */</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                host </span><span class="pun">:</span><span class="pln"> </span><span class="str">'some.host.com'</span><span class="pun">,</span><span class="pln">
+                path </span><span class="pun">:</span><span class="pln"> </span><span class="str">'/delete'</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        insertUrl </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="com">/** arg1, arg2, arg3... */</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                host </span><span class="pun">:</span><span class="pln"> </span><span class="str">'some.host.com'</span><span class="pun">,</span><span class="pln">
+                path </span><span class="pun">:</span><span class="pln"> </span><span class="str">'/insert'</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        updateUrl </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="com">/** arg1, arg2, arg3... */</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                host </span><span class="pun">:</span><span class="pln"> </span><span class="str">'some.host.com'</span><span class="pun">,</span><span class="pln">
+                path </span><span class="pun">:</span><span class="pln"> </span><span class="str">'/update'</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        onInsert </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">var</span><span class="pln"> prepareData </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span><span class="pln">
+            prepareData</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">name</span><span class="pun">;</span><span class="pln">
+            prepareData</span><span class="pun">.</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">age</span><span class="pun">;</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> prepareData</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        onUpdate </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">var</span><span class="pln"> prepareData </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{};</span><span class="pln">
+            prepareData</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">name</span><span class="pun">;</span><span class="pln">
+            prepareData</span><span class="pun">.</span><span class="pln">age </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">age</span><span class="pun">;</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> prepareData</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">},</span><span class="pln">
+
+        onDelete </span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">var</span><span class="pln"> prepareData </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{}</span><span class="pln">
+            prepareData</span><span class="pun">.</span><span class="pln">name </span><span class="pun">=</span><span class="pln"> data</span><span class="pun">.</span><span class="pln">name</span><span class="pun">;</span><span class="pln">
+            </span><span class="kwd">return</span><span class="pln"> prepareData</span><span class="pun">;</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        type </span><span class="pun">:</span><span class="pln"> </span><span class="str">'external'</span><span class="pun">,</span><span class="pln">
+        config </span><span class="pun">:</span><span class="pln"> config
+    </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">module</span><span class="pun">.</span><span class="pln">exports </span><span class="pun">=</span><span class="pln"> runnable</span><span class="pun">;</span></code></pre></li>
+</ul></li>
+<li><p>sumeru.external.get</p>
+
+<p>向第三方发送get请求</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span class="pln"> </span><span class="str">"http://some.host.com"</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> getCallback </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+sumeru</span><span class="pun">.</span><span class="pln">external</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(</span><span class="pln">url</span><span class="pun">,</span><span class="pln"> getCallback</span><span class="pun">);</span></code></pre></li>
+<li><p>sumeru.external.post</p>
+
+<p>向第三方发送post请求</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> options </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    host </span><span class="pun">:</span><span class="pln"> </span><span class="str">"some.host.com"</span><span class="pun">,</span><span class="pln">
+    path </span><span class="pun">:</span><span class="pln"> </span><span class="str">"/insert"</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> postData </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    name </span><span class="pun">:</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">utils</span><span class="pun">.</span><span class="pln">randomStr</span><span class="pun">(</span><span class="lit">8</span><span class="pun">),</span><span class="pln">
+    age </span><span class="pun">:</span><span class="pln"> parseInt</span><span class="pun">(</span><span class="pln"> </span><span class="lit">100</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">random</span><span class="pun">())</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> postCallback </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+sumeru</span><span class="pun">.</span><span class="pln">external</span><span class="pun">.</span><span class="pln">post</span><span class="pun">(</span><span class="pln">options</span><span class="pun">,</span><span class="pln"> postData</span><span class="pun">,</span><span class="pln"> postCallback</span><span class="pun">);</span></code></pre></li>
+<li><p>sumeru.external.sync</p>
+
+<p>将抓取最新的三方数据，并将新数据推送至前端</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> cb </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+    console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">data</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> url </span><span class="pun">=</span><span class="pln"> </span><span class="str">"some.host.com"</span><span class="pun">;</span><span class="pln">
+sumeru</span><span class="pun">.</span><span class="pln">external</span><span class="pun">.</span><span class="pln">sync</span><span class="pun">(</span><span class="pln">modelName</span><span class="pun">,</span><span class="pln"> pubName</span><span class="pun">,</span><span class="pln"> url</span><span class="pun">,</span><span class="pln"> cb</span><span class="pun">);</span></code></pre></li>
+</ul>
+
+<p>具体使用请查看《Example》文档中的SpiderNews实例。</p></li>
+</ul>
+
+<h2 id="h2_9">Auth</h2>
+
+<ul>
+<li><h3 id="h3_62">create</h3>
+
+<p>创建一个auth对象</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">)</span></code></pre>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span></code></pre></li>
+</ul>
+
+<h3 id="h3_63">Auth对象的方法</h3>
+
+<ul>
+<li><h4 id="h4_27">on</h4>
+
+<p>增加一个用户系统相关的事件监听器</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">on</span><span class="pun">(</span><span class="pln">type</span><span class="pun">,</span><span class="pln">handle</span><span class="pun">);</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>type</p>
+
+<p>每次认证状态变化时被触发，类型string，目前只支持一个事件类型,即 “statusChange”</p></li>
+<li><p>handle</p>
+
+<p>事件处理函数. 可接收两个参数<code>err</code>与<code>status</code></p>
+
+<ul>
+<li>err</li>
+</ul>
+
+<p>有错误产生时的错误对像</p>
+
+<ul>
+<li><p>status</p>
+
+<p>表示当前认证状态的字符串</p>
+
+<ul>
+<li><p>not_login</p>
+
+<p>当前未登陆</p></li>
+<li><p>logined</p>
+
+<p>已登陆</p></li>
+<li><p>doing_login</p>
+
+<p>正在登陆过程中</p></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> statusChangeHandle </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln">status</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">err</span><span class="pun">){</span><span class="pln">
+        </span><span class="com">// err.code | err.msg</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">};</span><span class="pln">
+
+    </span><span class="kwd">switch</span><span class="pun">(</span><span class="pln">status</span><span class="pun">){</span><span class="pln">
+        </span><span class="kwd">case</span><span class="pln"> </span><span class="str">"not_login"</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+            </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">case</span><span class="pln"> </span><span class="str">"logined"</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+            </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">case</span><span class="pln"> </span><span class="str">"doing_login"</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+            </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">default</span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+myAuth</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'statusChange'</span><span class="pun">,</span><span class="pln">statusChangeHandle</span><span class="pun">);</span></code></pre></li>
+<li><h4 id="h4_28">removeListener</h4>
+
+<p>移除由on方法增加的监听器</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">removeListener</span><span class="pun">(</span><span class="pln">type</span><span class="pun">,</span><span class="pln">handle</span><span class="pun">)</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>type</p>
+
+<p>事件名称, 目前只支持一个事件,即“statusChange”</p></li>
+<li><p>handle</p>
+
+<p>事件处理函数</p></li>
+</ul></li>
+<li><h4 id="h4_29">removeAllListeners</h4>
+
+<p>一次性移除所有已添加的监听器事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">removeAllListeners</span><span class="pun">(</span><span class="pln">type</span><span class="pun">)</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>type</p>
+
+<p>事件名称, 目前只支持一个事件,即“statusChange”</p></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+myAuth</span><span class="pun">.</span><span class="pln">removeAllListeners</span><span class="pun">(</span><span class="str">'statusChange'</span><span class="pun">);</span></code></pre></li>
+<li><h4 id="h4_30">login</h4>
+
+<p>根据token,pwd登陆由<code>authMethod</code>所指定的类型用户系统. 不提供<code>authMethod</code>时默认为<code>local</code>. 登陆过程中的每次状态变化将触发<code>statusChange</code>事件</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">login</span><span class="pun">(</span><span class="pln">token</span><span class="pun">,</span><span class="pln">pwd</span><span class="pun">,[</span><span class="pln">args</span><span class="pun">],[</span><span class="pln">authMethod</span><span class="pun">])</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>token</p>
+
+<p>用户的用户名，类型为string</p></li>
+<li><p>pwd</p>
+
+<p>用户的密码，类型为string</p></li>
+<li><p>args</p>
+
+<p>登陆时需附加的其它信息,具体内容根据<code>authMethod</code>的不同传入内容将不同.如不提供默认为{},类型为map，所有除用户名和密码外需要传入的其它数据（如验证码等），都需要通过这个args参数传入</p></li>
+<li><p>authMethod</p>
+
+<p>登陆用户的类型，默认为“local”，类型为string</p></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> statusChangeHandle </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln">status</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">err</span><span class="pun">){</span><span class="pln">
+        </span><span class="com">// err.code | err.msg</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">};</span><span class="pln">
+
+    </span><span class="kwd">switch</span><span class="pun">(</span><span class="pln">status</span><span class="pun">){</span><span class="pln">
+        </span><span class="kwd">case</span><span class="pln"> </span><span class="str">"not_login"</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+            </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">case</span><span class="pln"> </span><span class="str">"logined"</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+            </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">case</span><span class="pln"> </span><span class="str">"doing_login"</span><span class="pln"> </span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+            </span><span class="kwd">break</span><span class="pun">;</span><span class="pln">
+        </span><span class="kwd">default</span><span class="pun">:</span><span class="pln">
+            </span><span class="com">// do something</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+
+myAuth</span><span class="pun">.</span><span class="pln">on</span><span class="pun">(</span><span class="str">'statusChange'</span><span class="pun">,</span><span class="pln">statusChangeHandle</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">// 完整的调用方式</span><span class="pln">
+myAuth</span><span class="pun">.</span><span class="pln">login</span><span class="pun">(</span><span class="str">'userName'</span><span class="pun">,</span><span class="str">'pwd'</span><span class="pun">,{</span><span class="pln">a</span><span class="pun">:</span><span class="lit">100</span><span class="pun">,</span><span class="pln">b</span><span class="pun">:</span><span class="lit">200</span><span class="pun">,</span><span class="pln">c</span><span class="pun">:[</span><span class="lit">1</span><span class="pun">,</span><span class="lit">2</span><span class="pun">,</span><span class="lit">3</span><span class="pun">]},</span><span class="str">'authMehtod_XXX'</span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">// 也可使用以下不完整的参数调用方式。</span><span class="pln">
+</span><span class="com">// 1.省略authMethod认为 authMethod = 'local'</span><span class="pln">
+</span><span class="com">// myAuth.login('userName',’pwd‘,{a:100,b:200});</span><span class="pln">
+
+</span><span class="com">// 2.同时省略args与authMethod时，认为args={},authMethod='local'</span><span class="pln">
+</span><span class="com">// myAuth.login('userName','pwd');</span></code></pre></li>
+<li><h4 id="h4_31">logout</h4>
+
+<p>登出，并触发statusChange变化</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">logout</span><span class="pun">()</span></code></pre>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+myAuth</span><span class="pun">.</span><span class="pln">logout</span><span class="pun">();</span></code></pre></li>
+<li><h4 id="h4_32">getStatus</h4>
+
+<p>取得当前的认证状态. 返回值为String类型</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">getStatus</span><span class="pun">()</span></code></pre>
+
+<p>返回值如下：</p>
+
+<ul>
+<li><p>not_login</p>
+
+<p>当前未登陆</p></li>
+<li><p>logined</p>
+
+<p>已登陆</p></li>
+<li><p>doing_login</p>
+
+<p>正在登陆过程中</p></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+myAuth</span><span class="pun">.</span><span class="pln">getStatus</span><span class="pun">();</span></code></pre></li>
+<li><h4 id="h4_33">getLastError</h4>
+
+<p>取得最后一个操作发生的错误信息，每一个新操作产生时，上一次的错误信息将被清空</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">getLastError</span><span class="pun">()</span></code></pre>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> errObj </span><span class="pun">=</span><span class="pln"> myAuth</span><span class="pun">.</span><span class="pln">getLastError</span><span class="pun">();</span><span class="pln">
+
+console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">errObj</span><span class="pun">);</span></code></pre></li>
+<li><h4 id="h4_34">getUserInfo</h4>
+
+<p>取得当前认证用户的信息,如果未登陆则返回<code>null</code></p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">getUserInfo</span><span class="pun">()</span></code></pre>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+myAuth</span><span class="pun">.</span><span class="pln">getUserInfo</span><span class="pun">();</span></code></pre>
+
+<p>userInfo结构如下：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">userInfo </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"token"</span><span class="pun">:</span><span class="str">"token"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"info"</span><span class="pun">:{</span><span class="str">"param1"</span><span class="pun">:</span><span class="str">"modify1"</span><span class="pun">,</span><span class="str">"param2"</span><span class="pun">:</span><span class="str">"modify2"</span><span class="pun">,</span><span class="str">"param3"</span><span class="pun">:[</span><span class="str">"1"</span><span class="pun">,</span><span class="str">"2"</span><span class="pun">]},</span><span class="pln">
+    </span><span class="str">"status"</span><span class="pun">:</span><span class="str">"online"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"smr_id"</span><span class="pun">:</span><span class="str">"5253a5aa546610001200014a"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"__clientId"</span><span class="pun">:</span><span class="str">"7qgj3s1grr"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"userId"</span><span class="pun">:</span><span class="str">"5253a5a95466100012000148"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"clientId"</span><span class="pun">:</span><span class="str">"183ou3qrg_QZKUYDxapKFO"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"authMethod"</span><span class="pun">:</span><span class="str">"local"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"expires"</span><span class="pun">:</span><span class="lit">1381213910081</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+
+<p>注意：其中info字段的内容，来源于<code>register</code>时提供的userInfo</p></li>
+<li><h4 id="h4_35">register</h4>
+
+<p>注册一个用户</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">register</span><span class="pun">(</span><span class="pln">token</span><span class="pun">,</span><span class="pln">pwd</span><span class="pun">,</span><span class="pln">userInfo</span><span class="pun">,</span><span class="pln"> authMethod</span><span class="pun">,</span><span class="pln"> callback</span><span class="pun">)</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>token</p>
+
+<p>用户的登陆标识，类型为string</p></li>
+<li><p>pwd</p>
+
+<p>登陆密码，类型为string</p></li>
+<li><p>userInfo</p>
+
+<p>新的用户信息对像，类型为object</p></li>
+<li><p>authMethod</p>
+
+<p>目标的用户类型，类型为string</p></li>
+<li><p>callback</p>
+
+<p>注册完成后的回调方法,可接收一个<code>err</code>参数,当产生错误时返回对应的错误对像,如果成功,返回<code>null</code></p></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+myAuth</span><span class="pun">.</span><span class="kwd">register</span><span class="pun">(</span><span class="str">'user123'</span><span class="pun">,</span><span class="str">'pwd'</span><span class="pun">,{</span><span class="pln">age</span><span class="pun">:</span><span class="lit">100</span><span class="pun">},</span><span class="kwd">local</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">err</span><span class="pun">){</span><span class="pln">
+        </span><span class="com">// 注册失败</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+    </span><span class="com">// 注册成功</span><span class="pln">
+    </span><span class="com">// do something ..</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<p>注意：在注册前，尽量使用sumeru.auth.registerValidate() 进行验证，可以有效减少错误发生。</p></li>
+<li><h4 id="h4_36">registerValidate</h4>
+
+<p>测试一个注册信息是否可用</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">registerValidate</span><span class="pun">(</span><span class="pln">userInfo</span><span class="pun">,</span><span class="pln">authMethod</span><span class="pun">,</span><span class="pln">callback</span><span class="pun">)</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>userInfo</p>
+
+<p>待测试的注册信息，类型为object</p></li>
+<li><p>authMethod</p>
+
+<p>用户类型，类型为string</p></li>
+<li><p>callback</p>
+
+<p>测试完成后的回调函数，可接收err与isUsefull参数</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">*</span><span class="pln"> err
+
+    </span><span class="pun">产生错误是传入对应的错误对像</span><span class="pln">
+
+</span><span class="pun">*</span><span class="pln"> isUserfull
+
+    </span><span class="pun">值为</span><span class="str">`true`</span><span class="pun">时表示测试的用户可以使用</span></code></pre></li>
+</ul>
+
+<p>实例：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myAuth </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">auth</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="pln">env</span><span class="pun">);</span><span class="pln">
+myAuth</span><span class="pun">.</span><span class="pln">registerValidate</span><span class="pun">({</span><span class="pln">token</span><span class="pun">:</span><span class="str">'user123'</span><span class="pun">,</span><span class="pln">age</span><span class="pun">:</span><span class="lit">100</span><span class="pun">},</span><span class="str">'local'</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">,</span><span class="pln">isUsefull</span><span class="pun">){</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">isUsefull</span><span class="pun">){</span><span class="pln">
+        </span><span class="com">// 注册信息验证成功，可以进行注册</span><span class="pln">
+        myAuth</span><span class="pun">.</span><span class="kwd">register</span><span class="pun">(</span><span class="str">'user123'</span><span class="pun">,</span><span class="str">'pwd'</span><span class="pun">,{</span><span class="pln">age</span><span class="pun">:</span><span class="lit">100</span><span class="pun">},</span><span class="str">'local'</span><span class="pun">,</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">err</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">if</span><span class="pun">(</span><span class="pln">err</span><span class="pun">){</span><span class="pln">
+                </span><span class="com">// 注册失败</span><span class="pln">
+                </span><span class="kwd">return</span><span class="pun">;</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+            </span><span class="com">// 注册成功</span><span class="pln">
+            </span><span class="com">// do something ..</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+    </span><span class="pun">}</span><span class="kwd">else</span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// 注册信息验证失败</span><span class="pln">
+        </span><span class="com">//err.code || err.msg</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">});</span></code></pre></li>
+<li><h4 id="h4_37">modifyUserInfo</h4>
+
+<p>修改用户信息</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">modifyUserInfo</span><span class="pun">(</span><span class="pln">token</span><span class="pun">,</span><span class="pln">pwd</span><span class="pun">,</span><span class="pln">userInfo</span><span class="pun">,</span><span class="pln">authMethod</span><span class="pun">,</span><span class="pln">callback</span><span class="pun">)</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>token</p>
+
+<p>用户的登陆标识</p></li>
+<li><p>pwd</p>
+
+<p>登陆密码</p></li>
+<li><p>userInfo</p>
+
+<p>用户信息对像</p></li>
+<li><p>authMethod</p>
+
+<p>用户类型</p></li>
+<li><p>callback</p>
+
+<p>用户信息修改完成后的回调函数，可接受一个<code>err</code>参数，当修改信息发生错误时，返回产生的错误信息，如果修改成功，则返回<code>null</code></p></li>
+</ul></li>
+<li><h4 id="h4_38">modifyPassword</h4>
+
+<p>修改用户登陆密码信息</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">modifyPassword</span><span class="pun">(</span><span class="pln">token</span><span class="pun">,</span><span class="pln">oldPwd</span><span class="pun">,</span><span class="pln">newPwd</span><span class="pun">,</span><span class="pln">authMethod</span><span class="pun">,</span><span class="pln">callback</span><span class="pun">)</span></code></pre>
+
+<p>参数说明：</p>
+
+<ul>
+<li><p>token</p>
+
+<p>用户的登陆标识</p></li>
+<li><p>oldPwd</p>
+
+<p>当前密码</p></li>
+<li><p>newPwd</p>
+
+<p>新密码</p></li>
+<li><p>authMethod</p>
+
+<p>目标的用户类型</p></li>
+<li><p>callback</p>
+
+<p>修改完成后的回调函数，可接收一个<code>err</code>参数,当修改信息发生错误时，返回产生的错误信息,如果修改成功,则为<code>null</code></p></li>
+</ul></li>
+</ul>
+
+<h2 id="h2_10">Library</h2>
+
+<ul>
+<li><h3 id="h3_64">create</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">create</span><span class="pun">(</span><span class="pln">factory</span><span class="pun">)</span></code></pre>
+
+<p>创建一个Library库，sumeru.Library.create(factory);</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="typ">Library</span><span class="pun">.</span><span class="pln">timeUtils </span><span class="pun">=</span><span class="pln"> sumeru</span><span class="pun">.</span><span class="typ">Library</span><span class="pun">.</span><span class="pln">create</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">exports</span><span class="pun">){</span><span class="pln">    
+    exports</span><span class="pun">.</span><span class="pln">formatDate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">time</span><span class="pun">){</span><span class="pln">
+        </span><span class="kwd">return</span><span class="pln"> time</span><span class="pun">.</span><span class="pln">getFullYear</span><span class="pun">();</span><span class="pln">
+    </span><span class="pun">};</span><span class="pln">
+</span><span class="pun">});</span></code></pre></li>
+<li><h3 id="h3_65">getter</h3>
+
+<p>使用一个Library</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="typ">Library</span><span class="pun">.</span><span class="pln">timeUtils</span><span class="pun">.</span><span class="pln">formatDate</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">());</span></code></pre></li>
+</ul>
+
+<h2 id="h2_11">Reachability</h2>
+
+<p>查看网络连接状态</p>
+
+<ul>
+<li><h3 id="h3_66">getStatus</h3>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pun">语法：</span><span class="pln">getStatus</span><span class="pun">()</span></code></pre>
+
+<p>获取当前网络状态</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">reachability</span><span class="pun">.</span><span class="pln">getStatus</span><span class="pun">();</span></code></pre></li>
+</ul>
+
+<p>网络状态有以下三种：</p>
+
+<ul>
+<li><h5 id="h5_4">STATUS_OFFLINE</h5>
+
+<p>当前处于离线状态</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">reachability</span><span class="pun">.</span><span class="pln">STATUS_OFFLINE</span><span class="pun">;</span></code></pre></li>
+<li><h5 id="h5_5">STATUS_CONNECTING</h5>
+
+<p>当前处于网络连接状态</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">reachability</span><span class="pun">.</span><span class="pln">STATUS_CONNECTING</span><span class="pun">;</span></code></pre></li>
+<li><h5 id="h5_6">STATUS_CONNECTED</h5>
+
+<p>当前已连接到网络</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">sumeru</span><span class="pun">.</span><span class="pln">reachability</span><span class="pun">.</span><span class="pln">STATUS_CONNECTED</span><span class="pun">;</span></code></pre></li>
+</ul>
+
+<h2 id="h2_12">File Uploading</h2>
+
+<ul>
+<li><h4 id="h4_39">Library.fileUploader.init()</h4>
+
+<p>完成端上上传文件的初始化</p></li>
+</ul>
+
+<p>具体方法：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="kwd">var</span><span class="pln"> myUploader </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Library</span><span class="pun">.</span><span class="pln">fileUploader</span><span class="pun">.</span><span class="pln">init</span><span class="pun">({</span><span class="pln">
+    routerPath</span><span class="pun">:</span><span class="str">"/files"</span><span class="pun">,</span><span class="pln">
+    onSuccess</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">urlLink</span><span class="pun">){</span><span class="com">//成功之后的处理，此处有保存文件的逻辑</span><span class="pln">
+
+    </span><span class="pun">},</span><span class="pln">
+    fileSelect</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span><span class="com">//用户选择文件之后的处理</span><span class="pln">
+
+    </span><span class="pun">},</span><span class="pln">
+    onProgress</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span><span class="com">//进度更新</span><span class="pln">
+
+    </span><span class="pun">},</span><span class="pln">
+    onError</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span><span class="com">//出错</span><span class="pln">
+
+    </span><span class="pun">},</span><span class="pln">
+    onAbort</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">){</span><span class="com">//中断</span><span class="pln">
+
+    </span><span class="pun">},</span><span class="pln">
+</span><span class="pun">});</span></code></pre>
+
+<ul>
+<li><h5 id="h5_7">routerPath</h5>
+
+<p>与router中的pattern对应</p></li>
+<li><h5 id="h5_8">onSuccess:function(urlLink)</h5>
+
+<p>成功之后的处理，此处有保存文件的逻辑</p></li>
+<li><h5 id="h5_9">fileSelect:function(e)</h5>
+
+<p>用户选择文件之后的处理</p></li>
+<li><h5 id="h5_10">onProgress:function(e)</h5>
+
+<p>进度更新</p></li>
+<li><h5 id="h5_11">onError:function(e)</h5>
+
+<p>当上传出错时在该方法中处理</p></li>
+<li><h5 id="h5_12">onAbort:function(e)</h5>
+
+<p>当出现<code>中断</code>时在该方法中处理</p></li>
+<li><h4 id="h4_40">startUpload()</h4>
+
+<p>端上上传文件的方法</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln">myUploader</span><span class="pun">.</span><span class="pln">startUpload</span><span class="pun">();</span></code></pre></li>
+</ul>
+
+<h2 id="h2_13">package.js</h2>
+
+<p>package.js用于将文件之间的依赖关系添加到Clouda中，我们可以使用下面的语法编写该文件：</p>
+
+<pre class="prettyprint prettyprinted" style=""><code><span class="pln"> sumeru</span><span class="pun">.</span><span class="pln">packages</span><span class="pun">(</span><span class="pln">
+    </span><span class="str">'student.js'</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">'class/'</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">.....</span><span class="pln"> </span><span class="pun">,</span><span class="pln">
+
+    </span><span class="str">'studentList.js'</span><span class="pln">
+ </span><span class="pun">)</span></code></pre>
+
+<p>如果参数为文件夹，则Clouda会加载相应文件夹下的package.js。</p>
+
+<p>并不是在所有文件夹下新建文件或者文件夹后需要修改package.js文件，view文件夹和publish文件夹例外。</p>
+  </article>
+</div>  <div id="docs-nav" style="position: fixed; top: -91px;">
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/step1_getting_started" class="lvl1 doc-lnk">从这里开始</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/step2_your_first_app" class="lvl1 doc-lnk">您的第一个App</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/step3_overview" class="lvl1 doc-lnk">开发指南</a></h2>
+      </div>
+      <div class="doc-sec active">
+    <h2><a href="http://cloudajs.org/docs/step4_API_Documentation" class="lvl1 doc-lnk">API手册</a></h2>
+        <ul class="doc-sec-list">
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_1">Router</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_1">add</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_2">setDefault</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_3">externalProcessor.add(processor);</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_2">Model</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_4">relation</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_5">defaultValue</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_6">validation</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_7">addRule</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_8">create</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_9">setter</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_10">set</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_11">setData</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_12">getter</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_13">get</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_14">getId</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_15">getData</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_16">destroy</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_17">onValidation</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_3">Collection</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_18">create</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_19">size</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_20">add</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_21">update</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_22">remove</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_23">destroy</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_24">setData</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_25">find</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_26">addSorters</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_27">clearSorters</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_28">applyStorters</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_29">get</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_30">toJSON</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_31">getData</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_32">save</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_33">pluck</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_34">hold</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_35">releaseHold</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_36">where</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_37">orWhere</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_38">clearWheres</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_4">View</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_39">view中引入view</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_40">view中使用JS</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_41">foreach</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_42">compare</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_43">sumeru.config.view.set</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2 active" href="http://cloudajs.org/docs/step4_API_Documentation#h2_5">Transition</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_44">push</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_45">rotate</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_46">fade</a>
+                      </li>
+                    <li><a class="lvl3 active" href="http://cloudajs.org/docs/step4_API_Documentation#h3_47">shake</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_48">none</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_6">Controller</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_49">create</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_50">env</a>
+                        <ul class="doc-sec-list3">
+                            <li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_1">redirect</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_2">refresh</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_3">onload</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_4">onrender</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_5">onready</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_6">ondestroy</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_7">onerror</a>
+                            </li></ul>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_51">subscribe</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_52">session</a>
+                        <ul class="doc-sec-list3">
+                            <li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_8">set</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_9">get</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_10">bind</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_11">event</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_12">eventMap</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_13">commit</a>
+                            </li></ul>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_53">sub controller</a>
+                        <ul class="doc-sec-list3">
+                            <li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_14">callSubController</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_15">isready</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_16">show</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_17">hide</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_18">destory</a>
+                            </li></ul>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_7">Touch</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_54">事件配置</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_55">事件代理</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_56">事件绑定</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_57">解除事件代理</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_58">解除事件绑定</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_59">触发事件</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_8">Publish/Subscribe</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_60">subscribe</a>
+                        <ul class="doc-sec-list3">
+                            <li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_19">subscribeByPage</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_20">prioritySubscribe</a>
+                            </li></ul>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_61">publish</a>
+                        <ul class="doc-sec-list3">
+                            <li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_21">publishByPage</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_22">publishPlain</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_23">securePublish</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_24">securePublishByPage</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_25">securePublishPlain</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_26">external</a>
+                            </li></ul>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_9">Auth</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_62">create</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_63">Auth对象的方法</a>
+                        <ul class="doc-sec-list3">
+                            <li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_27">on</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_28">removeListener</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_29">removeAllListeners</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_30">login</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_31">logout</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_32">getStatus</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_33">getLastError</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_34">getUserInfo</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_35">register</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_36">registerValidate</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_37">modifyUserInfo</a>
+                              </li><li><a class="lvl4" href="http://cloudajs.org/docs/step4_API_Documentation#h4_38">modifyPassword</a>
+                            </li></ul>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_10">Library</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_64">create</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_65">getter</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_11">Reachability</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h3_66">getStatus</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_12">File Uploading</a>
+                <ul class="doc-sec-list2">
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h4_39">Library.fileUploader.init()</a>
+                      </li>
+                    <li><a class="lvl3" href="http://cloudajs.org/docs/step4_API_Documentation#h4_40">startUpload()</a>
+                      </li>
+                  </ul>
+              </li>
+            <li><a class="lvl2" href="http://cloudajs.org/docs/step4_API_Documentation#h2_13">package.js</a>
+              </li>
+          </ul>
+      </div>
+    <div class="divider"></div>    <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/examples" class="lvl1 doc-lnk">Examples</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/FAQ" class="lvl1 doc-lnk">FAQ</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/upload_to_BAE_3.0" class="lvl1 doc-lnk">一键部署BAE</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/access_lightapp" class="lvl1 doc-lnk">接入轻应用</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/change_log" class="lvl1 doc-lnk">Release Note</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/clouda_command" class="lvl1 doc-lnk">Clouda命令大全</a></h2>
+      </div>
+      <div class="doc-sec">
+    <h2><a href="http://cloudajs.org/docs/support" class="lvl1 doc-lnk">技术支持</a></h2>
+      </div>
+    <div class="divider"></div>
+<div class="doc-sec">
+  <h2><a href="http://cloudajs.org/search/docs" class="doc-lnk">搜索</a></h2>
+</div>
+</div>
+  <div class="clearfix"></div>
+<div class="right"><a id="back-to-top-btn" href="#top" title="Back to Top">↑</a></div></div>
+  <footer id="footer">
+    <div id="copyright">©2013 Baidu <a href="http://www.baidu.com/duty/">使用百度前必读</a> <span>京ICP证030173号</span></div>
+  </footer>
+</div>
+<script type="text/javascript" src="API%E6%89%8B%E5%86%8C%20-%20%E6%96%87%E6%A1%A3%20-%20Clouda_files/jquery.js"></script>
+<script type="text/javascript" src="API%E6%89%8B%E5%86%8C%20-%20%E6%96%87%E6%A1%A3%20-%20Clouda_files/topsrh.js"></script>
+<script type="text/javascript" src="API%E6%89%8B%E5%86%8C%20-%20%E6%96%87%E6%A1%A3%20-%20Clouda_files/prettify.js"></script>
+<script type="text/javascript">$(function(){function a(a){return a.split("#")[0]}function b(a){var b=j.filter('[href$="#'+a+'"]');b.hasClass("active")||(j.filter(".active").removeClass("active"),b.addClass("active"),b.hasClass("lvl3")?b.closest("ul.doc-sec-list2").siblings("a.lvl2").addClass("active"):b.hasClass("lvl4")&&(b.closest("ul.doc-sec-list3").siblings("a.lvl3").addClass("active"),b.closest("ul.doc-sec-list2").siblings("a.lvl2").addClass("active")))}function c(){var a=$(window).scrollTop();if(!(p>0&&Math.abs(p-a)<10)){p=a;var c=g>a?{position:"static",top:0}:{position:"fixed",top:-l};f.css("position")!=c.position&&f.css(c),i.length>0&&0===k.length&&d();for(var e=0,h=k.length;h>e;e++){var j=k[e].top+k[e].height<a+100,m=k[e].top>a+q/2-50;if(!j&&!m){b(k[e].id);break}}}}function d(){q=$(window).height(),k=[],i.each(function(){var a=$(this),b=a.offset().top;k.push({id:a.attr("id"),top:b}),k.length>1&&(k[k.length-2].height=b-k[k.length-2].top)}),k.length&&(k[k.length-1].height=100),c()}function e(){var a=$(window).scrollTop();a>10?r.show():r.hide()}var f=$("#docs-nav"),g=f.parent().offset().top,h=$("#docs-cnt article.md-body"),i=h.find("h2[id], h3[id], h4[id], h5[id]"),j=f.find("ul.doc-sec-list a"),k=[],l=0,m=f.find("> div.doc-sec.active"),n=location.href;if(n=a(n),h.find("a").each(function(){var b=a(this.href);n!=b&&$(this).attr("target","_blank")}),m.find("a").click(function(){var a=this.href.split("#");if(2==a.length){var b=$("#"+a[1]).get(0);return b?(b.scrollIntoView(),history.pushState&&history.pushState({},document.title,this.href),!1):void 0}}),m.length){var o=m.prevAll(".doc-sec");o.length&&(l=o.offset().top-f.offset().top)}$("article.md-body pre").addClass("prettyprint"),prettyPrint();var p=-1,q=0,r=$('<a id="back-to-top-btn" href="#top" title="Back to Top">&uarr;</a>').appendTo($('<div class="right"></div>').appendTo($("#content")));$(window).on("resize",function(){d()}),$(window).on("scroll",function(){c(),e()}),setTimeout(function(){d(),e()},100)});</script>
+<script type="text/javascript">!function(){if("Microsoft Internet Explorer"==window.navigator.appName){var a=5;document.documentMode?a=document.documentMode:document.compatMode&&"CSS1Compat"==document.compatMode&&(a=7);var b=-1,c=navigator.userAgent,d=new RegExp("MSIE ([0-9]{1,}[\\.0-9]{0,})");if(null!==d.exec(c)&&(b=parseFloat(RegExp.$1)),9>a||9>b){var e=document.createElement("div");e.id="old-ie-tip",e.innerHTML='小提示：您使用的是低版本的 IE，推荐换用 <a href="http://www.google.com/chrome/" target="_blank">Chrome</a>！';var f=document.getElementById("wrapper");f.insertBefore(e,f.firstChild)}}}();</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe3a3c2bd723810daf059932db573af23' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="API%E6%89%8B%E5%86%8C%20-%20%E6%96%87%E6%A1%A3%20-%20Clouda_files/h.js" type="text/javascript"></script>
+
+</body></html>
